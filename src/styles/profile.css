@@ -1,0 +1,80 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 72px);
+    background: #f8fafc;
+    padding: 40px 20px;
+}
+
+.profile-card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 48px;
+    border-radius: 32px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.profile-heading {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: var(--text-main);
+}
+
+.image-section {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.profile-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.user-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.user-email {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.photo-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+}
+
+.file-selector {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.upload-btn {
+    background-color: var(--text-main);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.upload-btn:hover {
+    opacity: 0.9;
+}
