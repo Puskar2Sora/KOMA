@@ -10,8 +10,7 @@ function RoomDetails() {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/rooms/${id}`)
+    axios.get(`http://localhost:5000/api/rooms/${id}`)
       .then((res) => {
         setRoom(res.data);
         setLoading(false);
@@ -25,121 +24,125 @@ function RoomDetails() {
   const handleContact = async () => {
     const message = prompt("Enter a brief message for the owner:");
     if (!message) return;
-
     setSending(true);
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        setSending(false);
-        return alert("Please login to contact the owner.");
-      }
-
-      await axios.post(
-        "http://localhost:5000/api/rooms/contact",
+      if (!token) return alert("Please login to contact the owner.");
+      await axios.post("http://localhost:5000/api/rooms/contact", 
         { roomId: id, message },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
       alert("Success! Inquiry sent to owner.");
     } catch (err) {
-      console.error("Contact Error:", err);
-      alert(err.response?.data?.message || "Failed to send inquiry.");
+      alert("Failed to send inquiry.");
     } finally {
       setSending(false);
     }
   };
 
-  if (loading) return <p className="loading-text">Loading...</p>;
-  if (!room) return <p className="loading-text">Property not found.</p>;
+  if (loading) return <div className="loader-container">Loading Property...</div>;
+  if (!room) return <div className="error-container">Property not found.</div>;
 
   return (
-    <div className="room-details-container">
-      {/* 🖼️ EXPANDED IMAGE GALLERY (Handles up to 10 images) */}
-      <div className="room-gallery-scroll">
-        {room.images?.map((img, i) => (
-          <img 
-            key={i} 
-            src={`http://localhost:5000${img}`} 
-            alt={`Room view ${i + 1}`} 
-            className="room-gallery-item" 
-          />
-        ))}
+    <div className="property-page">
+      {/* 🏙️ HERO GALLERY SECTION */}
+      <div className="hero-gallery-container">
+        <div className="gallery-track">
+          {room.images?.map((img, i) => (
+            <div className="gallery-slide" key={i}>
+              <img src={`http://localhost:5000${img}`} alt="Property view" />
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="room-details-content">
-        <div className="main-info-column">
-          <div className="header-badge-row">
-            <h1 className="room-title">{room.title}</h1>
-            <span className="bhk-badge">{room.roomType}</span>
-          </div>
-          
-          <p className="room-location">📍 {room.address}, {room.city}</p>
+      <div className="property-content-wrapper">
+        {/* ⬅️ MAIN INFORMATION COLUMN */}
+        <main className="property-main">
+          <section className="main-header">
+            <div className="title-row">
+              <h1 className="prop-title">{room.title}</h1>
+              <span className="type-tag">{room.roomType}</span>
+            </div>
+            <p className="prop-address">📍 {room.address}, {room.city}</p>
+          </section>
 
-          {/* 🔥 NEW: QUICK SPECS GRID */}
-          <div className="specs-grid">
-            <div className="spec-item">
-              <span className="spec-label">Furnishing</span>
-              <span className="spec-value">🏠 {room.furnishing}</span>
-            </div>
-            <div className="spec-item">
-              <span className="spec-label">Tenant Pref.</span>
-              <span className="spec-value">👤 {room.preferredTenant}</span>
-            </div>
-            <div className="spec-item">
-              <span className="spec-label">Bathrooms</span>
-              <span className="spec-value">🚿 {room.bathrooms} Bath</span>
-            </div>
-            {room.area && (
-              <div className="spec-item">
-                <span className="spec-label">Built-up Area</span>
-                <span className="spec-value">📏 {room.area} sqft</span>
+          {/* ⚡ KEY SPECIFICATIONS GRID */}
+          <section className="info-section">
+            <h3 className="section-heading">Property Highlights</h3>
+            <div className="highlights-grid">
+              <div className="highlight-card">
+                <span className="h-icon">🛋️</span>
+                <div>
+                  <p className="h-label">Furnishing</p>
+                  <p className="h-value">{room.furnishing}</p>
+                </div>
               </div>
-            )}
-          </div>
+              <div className="highlight-card">
+                <span className="h-icon">📏</span>
+                <div>
+                  <p className="h-label">Built Area</p>
+                  <p className="h-value">{room.sqft || room.area} sqft</p>
+                </div>
+              </div>
+              <div className="highlight-card">
+                <span className="h-icon">👤</span>
+                <div>
+                  <p className="h-label">Preferred</p>
+                  <p className="h-value">{room.preferredTenant || 'Any'}</p>
+                </div>
+              </div>
+              <div className="highlight-card">
+                <span className="h-icon">🛁</span>
+                <div>
+                  <p className="h-label">Bathrooms</p>
+                  <p className="h-value">{room.bathrooms || 1} Bath</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-          <div className="details-section">
-            <h3>Description</h3>
-            <p className="room-description">{room.description}</p>
-          </div>
+          <section className="info-section">
+            <h3 className="section-heading">Description</h3>
+            <p className="prop-desc-text">{room.description}</p>
+          </section>
 
-          <div className="details-section">
-            <h3>Amenities</h3>
-            <div className="amenities-tags">
+          <section className="info-section">
+            <h3 className="section-heading">Amenities</h3>
+            <div className="amenities-container">
               {room.amenities?.map((a, i) => (
-                <span key={i} className="amenity-tag">✅ {a}</span>
+                <span key={i} className="amenity-pill">✨ {a}</span>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
 
-        {/* 💳 STICKY BOOKING CARD */}
-        <div className="booking-sidebar">
-          <div className="booking-card">
-            <div className="price-tag">
-              <span className="price-amount">₹{room.rent}</span>
-              <span className="price-period">/ month</span>
+        {/* ➡️ STICKY SIDEBAR CARD */}
+        <aside className="property-sidebar">
+          <div className="sticky-card">
+            <div className="pricing-box">
+              <div className="price-main">₹{room.rent.toLocaleString()}</div>
+              <div className="price-sub">per month</div>
             </div>
-            
-            <div className="owner-profile-mini">
-              {room.owner?.photo && (
-                <img src={`http://localhost:5000${room.owner.photo}`} alt="" />
-              )}
-              <div>
-                <p>Listed by <b>{room.owner?.name}</b></p>
-                <p className="owner-status">Property Owner</p>
+
+            <div className="owner-box">
+              <img 
+                src={room.owner?.photo ? `http://localhost:5000${room.owner.photo}` : "/default-avatar.png"} 
+                alt="Owner" 
+                className="owner-img"
+              />
+              <div className="owner-text">
+                <p className="owner-name"><b>{room.owner?.name}</b></p>
+                <p className="owner-label">Verified Owner</p>
               </div>
             </div>
 
-            <button 
-              className="reserve-btn" 
-              onClick={handleContact} 
-              disabled={sending}
-            >
-              {sending ? "Sending Interest..." : "Schedule a Visit / Contact"}
+            <button className="cta-button" onClick={handleContact} disabled={sending}>
+              {sending ? "Processing..." : "Contact Owner"}
             </button>
-            <p className="security-note">🔒 Contact details are secure with KOMA</p>
+            <p className="safety-disclaimer">⚡ Respond time usually under 24 hours.</p>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );

@@ -1,219 +1,193 @@
-.room-details {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 0 5%;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 48px;
-  align-items: start;
+/* --- Global Theme & Reset --- */
+.property-page {
+  background-color: #fcfcfd;
+  min-height: 100vh;
 }
 
-/* Gallery Styling */
-.room-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.room-gallery img {
+/* --- Hero Gallery --- */
+.hero-gallery-container {
   width: 100%;
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
+  height: 500px;
+  overflow: hidden;
+  background: #000;
 }
 
-/* Sidebar Info Styling */
-.room-info {
-  background: var(--card);
+.gallery-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  height: 100%;
+  scrollbar-width: none;
+}
+
+.gallery-slide {
+  flex: 0 0 70%;
+  height: 100%;
+  scroll-snap-align: center;
+  padding: 0 5px;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* --- Content Layout --- */
+.property-content-wrapper {
+  max-width: 1200px;
+  margin: -40px auto 0; /* Overlap with gallery */
+  padding: 0 20px 60px;
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.property-main {
+  flex: 1;
+  background: #fff;
   padding: 40px;
-  border-radius: 32px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+}
+
+.property-sidebar {
+  width: 400px;
+  flex-shrink: 0;
+}
+
+.sticky-card {
   position: sticky;
   top: 100px;
+  background: #fff;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid #edf2f7;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
 }
 
-.room-title {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--text-main);
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
+/* --- Typography & Badges --- */
+.prop-title { font-size: 32px; font-weight: 800; color: #1a202c; margin-bottom: 8px; }
+.prop-address { color: #718096; font-size: 16px; margin-bottom: 40px; }
 
-.room-location {
-  color: var(--text-muted);
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 24px;
-  display: block;
-}
-
-.room-description {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-main);
-  margin-bottom: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Amenities Section */
-.amenities-title {
-  font-size: 18px;
+.type-tag {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 6px 16px;
+  border-radius: 99px;
   font-weight: 700;
-  margin-bottom: 16px;
-}
-
-.amenities {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-.amenities li {
-  list-style: none;
   font-size: 14px;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f1f5f9;
-  padding: 8px 12px;
-  border-radius: 8px;
 }
 
-/* Action Button */
-.contact-btn {
-  width: 100%;
-  padding: 18px;
-  background: var(--primary);
-  color: white;
+/* --- Highlights Grid --- */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
   border-radius: 16px;
-  border: none;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.2);
 }
 
-.contact-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.3);
-}
+.h-icon { font-size: 24px; }
+.h-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.h-value { font-weight: 700; color: #1e293b; font-size: 15px; }
 
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-  .room-details {
-    grid-template-columns: 1fr;
-  }
-  
-  .room-info {
-    position: static;
-  }
-}
+/* --- Sectioning --- */
+.info-section { margin-top: 48px; border-top: 1px solid #f1f5f9; padding-top: 32px; }
+.section-heading { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+.prop-desc-text { line-height: 1.8; color: #4a5568; font-size: 16px; }
 
-.owner-flex {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.owner-avatar-mini {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #e2e8f0;
-}
-
-.contact-btn {
-  margin-top: 30px;
-  width: 100%;
-  padding: 16px;
-  background: var(--primary);
-  color: white;
+.amenities-container { display: flex; flex-wrap: wrap; gap: 12px; }
+.amenity-pill {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  padding: 10px 18px;
   border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* --- Sidebar Pricing & CTA --- */
+.pricing-box { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; }
+.price-main { font-size: 40px; font-weight: 900; color: #1a202c; letter-spacing: -1px; }
+.price-sub { color: #718096; font-size: 16px; font-weight: 500; }
+
+.owner-box { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.owner-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.owner-name { font-size: 16px; margin: 0; }
+.owner-label { font-size: 12px; color: #94a3b8; margin: 0; }
+
+.cta-button {
+  width: 100%;
+  padding: 20px;
+  background: #4f46e5;
+  color: #fff;
   border: none;
+  border-radius: 16px;
+  font-size: 17px;
   font-weight: 700;
-  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.contact-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px rgba(124, 58, 237, 0.2);
+.cta-button:hover { background: #4338ca; transform: translateY(-2px); }
+.safety-disclaimer { text-align: center; margin-top: 16px; font-size: 12px; color: #94a3b8; }
+
+/* --- Mobile Responsive --- */
+@media (max-width: 1000px) {
+  .property-content-wrapper { flex-direction: column; }
+  .property-sidebar { width: 100%; }
+  .sticky-card { position: static; }
+  .gallery-slide { flex: 0 0 90%; }
 }
 
-.room-gallery-scroll {
+/* Container for the page */
+.property-page {
+  background-color: #f9fafb;
+}
+
+/* 🏙️ Hero Gallery sits at the top */
+.hero-gallery-container {
+  height: 480px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ⬅️ Main wrapper with negative margin to create the "Overlap" */
+.property-content-wrapper {
+  max-width: 1100px;
+  margin: -60px auto 0; /* Creates the overlap effect */
+  padding: 0 20px 80px;
   display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 20px 0;
-  scrollbar-width: thin;
+  gap: 30px;
+  position: relative;
+  z-index: 10;
 }
 
-.room-gallery-item {
-  height: 400px;
-  min-width: 600px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* White card for the main info */
+.property-main {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
-.header-badge-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.bhk-badge {
-  background: var(--primary);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.specs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 16px;
-  margin: 25px 0;
-}
-
-.spec-item { display: flex; flex-direction: column; gap: 4px; }
-.spec-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
-.spec-value { font-weight: 600; color: #1e293b; font-size: 15px; }
-
-.booking-sidebar { position: sticky; top: 100px; height: fit-content; }
-.booking-card {
-  border: 1px solid #e2e8f0;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.price-amount { font-size: 32px; font-weight: 800; color: #1e293b; }
-.reserve-btn {
-  width: 100%;
-  padding: 18px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 20px;
+/* Sticky Sidebar for the Price and Contact */
+.property-sidebar {
+  width: 380px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
 }
