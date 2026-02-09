@@ -20,7 +20,7 @@ function EditRoom() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/rooms/${id}`)
+      .get(`https://koma-backend-801z.onrender.com/api/rooms/${id}`) // Updated to Render URL
       .then(res => {
         const r = res.data;
         setForm({
@@ -31,9 +31,10 @@ function EditRoom() {
           address: r.address,
           amenities: r.amenities.join(","),
         });
-      });
+      })
+      .catch(err => console.error("Error fetching room data:", err)); // Added error handling
   }, [id]);
-
+  
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -51,14 +52,14 @@ function EditRoom() {
     }
 
     await axios.put(
-      `http://localhost:5000/api/rooms/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+  `https://koma-backend-801z.onrender.com/api/rooms/${id}`, // Live Render URL
+  data,
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);
 
     navigate(`/rooms/${id}`);
   };

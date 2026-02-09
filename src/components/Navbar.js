@@ -47,7 +47,7 @@ function Navbar({ user }) {
             >
               {user.photo ? (
                 <img
-                  src={`http://localhost:5000${user.photo}`}
+                  src={`https://koma-backend-801z.onrender.com${user.photo}`}
                   alt="profile"
                 />
               ) : (

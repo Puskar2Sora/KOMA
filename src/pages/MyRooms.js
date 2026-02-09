@@ -8,7 +8,7 @@ function MyRooms() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/rooms/my", {
+      .get("https://koma-backend-801z.onrender.com/api/rooms/my", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

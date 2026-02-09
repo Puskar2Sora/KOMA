@@ -43,7 +43,7 @@ function Profile() {
           <div className="image-section">
               <img
                 className="profile-avatar"
-                src={user.photo ? `http://localhost:5000${user.photo}` : "https://via.placeholder.com/150"}
+                src={user.photo ? `https://koma-backend-801z.onrender.com${user.photo}` : "https://via.placeholder.com/150"}
                 alt="User Profile"
               />
           </div>

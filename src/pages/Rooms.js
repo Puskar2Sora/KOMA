@@ -39,7 +39,7 @@ function Rooms() {
   const fetchRooms = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/rooms");
+      const res = await axios.get("https://koma-backend-801z.onrender.com/api/rooms");
       setRooms(res.data);
     } catch (err) {
       console.error("Failed to fetch rooms:", err);
@@ -68,7 +68,7 @@ function Rooms() {
       setMapCenter([latitude, longitude]);
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/rooms/nearby?lat=${latitude}&lng=${longitude}&distance=15`
+          `https://koma-backend-801z.onrender.com/api/rooms/nearby?lat=${latitude}&lng=${longitude}&distance=15`
         );
         setRooms(res.data);
       } catch (err) {
@@ -111,7 +111,7 @@ function Rooms() {
             rooms.map(room => (
               <div key={room._id} className="horizontal-room-card">
                 <img 
-                  src={room.images?.[0] ? `http://localhost:5000${room.images[0]}` : "https://via.placeholder.com/150"} 
+                  src={room.images?.[0] ? `https://koma-backend-801z.onrender.com${room.images[0]}` : "https://via.placeholder.com/150"} 
                   alt={room.title} 
                 />
                 <div className="card-details">

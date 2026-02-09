@@ -112,7 +112,7 @@ function AddRoom() {
 
   try {
     const token = localStorage.getItem("token");
-    await axios.post("http://localhost:5000/api/rooms", data, {
+    await axios.post("https://koma-backend-801z.onrender.com/api/rooms", data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,

@@ -10,7 +10,7 @@ function RoomDetails() {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/rooms/${id}`)
+    axios.get(`https://koma-backend-801z.onrender.com/api/rooms/${id}`)
       .then((res) => {
         setRoom(res.data);
         setLoading(false);
@@ -28,7 +28,7 @@ function RoomDetails() {
     try {
       const token = localStorage.getItem("token");
       if (!token) return alert("Please login to contact the owner.");
-      await axios.post("http://localhost:5000/api/rooms/contact", 
+      await axios.post("https://koma-backend-801z.onrender.com/api/rooms/contact", 
         { roomId: id, message },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -50,7 +50,7 @@ function RoomDetails() {
         <div className="gallery-track">
           {room.images?.map((img, i) => (
             <div className="gallery-slide" key={i}>
-              <img src={`http://localhost:5000${img}`} alt="Property view" />
+              <img src={`https://koma-backend-801z.onrender.com${img}`} alt="Property view" />
             </div>
           ))}
         </div>
@@ -127,7 +127,7 @@ function RoomDetails() {
 
             <div className="owner-box">
               <img 
-                src={room.owner?.photo ? `http://localhost:5000${room.owner.photo}` : "/default-avatar.png"} 
+                src={room.owner?.photo ? `https://koma-backend-801z.onrender.com${room.owner.photo}` : "/default-avatar.png"} 
                 alt="Owner" 
                 className="owner-img"
               />

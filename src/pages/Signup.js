@@ -14,7 +14,7 @@ function Signup() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://koma-backend-801z.onrender.com/api/auth/register",
         { name, email, password }
       );
 

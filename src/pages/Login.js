@@ -10,10 +10,9 @@ function Login() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    try {
+try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://koma-backend-801z.onrender.com/api/auth/login", // Updated to live Render URL
         { email, password }
       );
 
@@ -60,7 +59,7 @@ function Login() {
         </p>
 
        <a
-  href="http://localhost:5000/api/auth/google"
+  href="https://koma-backend-801z.onrender.com/api/auth/google"
   className="google-btn"
 >
   <img
