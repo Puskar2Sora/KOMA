@@ -15,6 +15,7 @@ import Rooms from "./pages/Rooms";
 import AddRoom from "./pages/AddRoom";
 import GoogleSuccess from "./pages/GoogleSuccess";
 import LandingPage from "./pages/LandingPage";
+import VerifyOwner from "./pages/VerifyOwner";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -76,7 +77,7 @@ function App() {
         />
 
         <Route path="/google-success" element={<GoogleSuccess />} />
-
+        <Route path="/verify-owner" element={<VerifyOwner />} />
         {/* 🔐 Protected routes */}
         <Route
           path="/add-room"

@@ -1,70 +1,72 @@
-.add-room-container, .edit-room-container {
-    max-width: 650px;
-    margin: 60px auto;
-    padding: 48px;
-    background: white;
-    border-radius: 24px;
-    box-shadow: var(--shadow);
+.edit-room-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  background-color: #f8f9fa;
 }
 
-.form-title, .edit-title {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 40px;
-    text-align: center;
+.edit-room-form {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06); /* Soft minimalist shadow */
 }
 
-.add-room-form, .edit-room-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.edit-title {
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+  text-align: center;
 }
 
-.form-input, .edit-input, .form-textarea, .edit-textarea {
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: #f8fafc;
-    font-size: 16px;
-    transition: all 0.2s;
+.input-group {
+  margin-bottom: 1.2rem;
 }
 
-.form-input:focus, .edit-input:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 0.5rem;
 }
 
-.form-textarea, .edit-textarea {
-    min-height: 150px;
-    resize: vertical;
+.edit-input, .edit-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.edit-textarea { height: 120px; resize: none; }
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .file-input-wrapper {
-    background: #f1f5f9;
-    padding: 20px;
-    border-radius: 12px;
-    border: 2px dashed var(--border);
+  background: #f3f0ff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px dashed #6246ea;
+  margin: 1.5rem 0;
 }
 
-.file-input-wrapper label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 14px;
+.file-hint { font-size: 0.75rem; color: #6246ea; margin-bottom: 0.5rem; }
+
+.update-btn {
+  width: 100%;
+  padding: 14px;
+  background: #6246ea; /* Brand Purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.submit-btn, .update-btn {
-    padding: 18px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.submit-btn:hover { background: var(--primary-hover); }
+.update-btn:disabled { background: #ccc; }
