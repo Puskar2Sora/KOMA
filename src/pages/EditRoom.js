@@ -18,6 +18,8 @@ function EditRoom() {
     amenities: "",
   });
 
+  
+
   const [images, setImages] = useState([]);
 
   useEffect(() => {
