@@ -79,50 +79,50 @@ function AddRoom() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+// Inside AddRoom.js
+const handleSubmit = async (e) => {
   e.preventDefault();
   
-  // 📍 NEW: Prevent submission if the user hasn't picked a spot on the map
   if (!formData.location) {
     return alert("Please select the property location on the map first!");
   }
 
   setLoading(true);
-
   const data = new FormData();
   
-  // 1. Append all standard fields (title, rent, sqft, etc.)
+  // Append standard fields
   Object.keys(formData).forEach((key) => {
-    // We skip 'location' here because we'll append lat/lng separately
     if (key !== "location") {
       data.append(key, formData[key]);
     }
   });
 
-  // 2. 🔥 The Map coordinates (User-selected)
+  // Append coordinates separately for the GeoJSON backend logic
   data.append("lat", formData.location.lat);
   data.append("lng", formData.location.lng);
+  // Ensure address is sent if it's required in your schema
+  data.append("address", formData.address || `${formData.title}, ${formData.city}`);
 
-  // 3. Optional: Use Title or City as a fallback 'address' for the database text field
-  data.append("address", `${formData.title}, ${formData.city}`);
-
+  // Append multiple images
   for (let i = 0; i < images.length; i++) {
     data.append("images", images[i]);
   }
 
   try {
     const token = localStorage.getItem("token");
-    await axios.post("https://koma-backend-801z.onrender.com/api/rooms", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    // ✅ Use the base URL that matches your updated router.post("/")
+// ✅ Corrected URL
+await axios.post("https://koma-backend-801z.onrender.com/api/rooms", data, {
+  headers: {
+    "Content-Type": "multipart/form-data",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
     alert("Property Listed Successfully!");
-    navigate("/rooms");
+    navigate("/"); // Redirect to home to see the new listing
   } catch (err) {
-    const errMsg = err.response?.data?.message || "Failed to add room";
-    alert(`Error: ${errMsg}`); 
+    console.error(err);
+    alert(`Error: ${err.response?.data?.message || "Failed to add room"}`); 
   } finally {
     setLoading(false);
   }

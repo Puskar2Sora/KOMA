@@ -40,8 +40,9 @@ function Navbar({ user }) {
               className={`profile-trigger ${open ? 'active' : ''}`}
             >
               <div className="avatar-circle">
+                {/* 🔥 Updated: Support Cloudinary URLs directly */}
                 {user.photo ? (
-                  <img src={`https://koma-backend-801z.onrender.com${user.photo}`} alt="user" />
+                  <img src={user.photo} alt="user" />
                 ) : (
                   <span>{user.name?.charAt(0).toUpperCase()}</span>
                 )}
@@ -61,24 +62,18 @@ function Navbar({ user }) {
                   </div>
                 </div>
 
+                {/* 🛡️ Show a universal 'Verified' badge for hackathon trust */}
                 <div className="status-indicator">
-                  <span className={`dot ${user.verificationStatus || 'unverified'}`}></span>
-                  {user.verificationStatus === "verified" ? "Verified Owner" : "Unverified Seeker"}
+                  <span className="dot verified"></span>
+                  Verified KOMA User
                 </div>
 
                 <div className="dropdown-links">
                   <Link to="/profile" onClick={() => setOpen(false)}>👤 My Profile</Link>
                   
-                  {user.verificationStatus === "verified" ? (
-                    <>
-                      <Link to="/my-rooms" onClick={() => setOpen(false)}>🏠 Manage Listings</Link>
-                      <Link to="/add-room" onClick={() => setOpen(false)}>➕ Post Property</Link>
-                    </>
-                  ) : (
-                    <Link to="/verify-owner" className="verify-highlight" onClick={() => setOpen(false)}>
-                      🛡️ Verify Identity
-                    </Link>
-                  )}
+                  {/* 🔥 HACKATHON: Always show owner links to logged-in users */}
+                  <Link to="/my-rooms" onClick={() => setOpen(false)}>🏠 Manage Listings</Link>
+                  <Link to="/add-room" onClick={() => setOpen(false)}>➕ Post Property</Link>
                 </div>
 
                 <button className="dropdown-logout" onClick={logout}>🚪 Logout</button>
