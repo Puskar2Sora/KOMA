@@ -109,7 +109,6 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const token = localStorage.getItem("token");
     // ✅ Use the base URL that matches your updated router.post("/")
 // ✅ Corrected URL
 await axios.post("https://koma-backend-801z.onrender.com/api/rooms", data, {
