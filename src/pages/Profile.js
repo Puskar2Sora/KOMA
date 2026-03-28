@@ -35,7 +35,6 @@ function Profile() {
       const res = await axios.put(`${API_BASE}/api/auth/profile-photo`, data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      // ✅ Cloudinary returns the full HTTPS URL
       setUser(prev => ({ ...prev, photo: res.data.photo }));
       setFile(null); // reset file input
       alert("Profile photo updated successfully!");
@@ -47,14 +46,14 @@ function Profile() {
   };
 
   if (!user) return (
-    <div className="flex justify-center items-center h-64">
-      <Loader2 className="w-10 h-10 animate-spin text-purple-500" />
+    <div className="flex justify-center items-center h-[50vh]">
+      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
     </div>
   );
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       className="space-y-8 max-w-5xl mx-auto"
     >
@@ -65,31 +64,31 @@ function Profile() {
       <div className="grid md:grid-cols-2 gap-8">
         
         {/* Photo Upload Card */}
-        <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between">
+        <div className="bento-card p-8 sm:p-10 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-              <Upload className="w-5 h-5 text-purple-400" /> 
+            <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2 tracking-tight">
+              <Upload className="w-6 h-6 text-orange-500" /> 
               Update Photo
             </h3>
-            <p className="text-gray-400 text-sm mb-6">Make sure it's a square image under 5MB.</p>
+            <p className="text-gray-500 font-medium text-sm mb-6">Make sure it's a square image under 5MB.</p>
           </div>
           
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <input 
               type="file" 
               accept="image/*"
               onChange={e => setFile(e.target.files[0])} 
-              className="block w-full text-sm text-gray-400
-                file:mr-4 file:py-2 file:px-4
+              className="block w-full text-sm text-gray-500
+                file:mr-4 file:py-3 file:px-5
                 file:rounded-xl file:border-0
-                file:text-sm file:font-semibold
-                file:bg-white/10 file:text-purple-300
-                hover:file:bg-white/20 transition-colors"
+                file:text-sm file:font-bold file:tracking-wide
+                file:bg-blue-50 file:text-blue-700
+                hover:file:bg-blue-100 transition-colors cursor-pointer"
             />
             <button 
               disabled={uploading || !file}
               onClick={uploadPhoto}
-              className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+              className="w-full py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               {uploading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Save Changes"}
             </button>
@@ -97,27 +96,27 @@ function Profile() {
         </div>
 
         {/* Quick Links Card */}
-        <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between">
+        <div className="bento-card p-8 sm:p-10 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">Property Management</h3>
-            <p className="text-gray-400 text-sm mb-6">Manage your active listings or post a new room space for rental.</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">Property Management</h3>
+            <p className="text-gray-500 font-medium text-sm mb-8">Manage your active listings or post a new room space for rental.</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <Link 
               to="/my-rooms"
-              className="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-white/10 hover:border-blue-500/50 border border-white/10 rounded-xl transition-all group"
+              className="flex flex-col items-center justify-center p-6 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 rounded-2xl transition-all group shadow-sm hover:shadow-md"
             >
-              <Home className="w-8 h-8 text-blue-400 mb-2 group-hover:scale-110 transition-transform" />
-              <span className="font-semibold text-gray-200">My Listings</span>
+              <Home className="w-8 h-8 text-blue-600 mb-3 group-hover:scale-110 transition-transform" />
+              <span className="font-extrabold text-gray-900 tracking-tight">My Listings</span>
             </Link>
             
             <Link 
               to="/add-room"
-              className="flex flex-col items-center justify-center p-4 bg-purple-600/20 hover:bg-purple-600/30 hover:border-purple-500/50 border border-purple-500/30 rounded-xl transition-all group"
+              className="flex flex-col items-center justify-center p-6 bg-orange-50 hover:bg-orange-100 border border-orange-100 hover:border-orange-200 rounded-2xl transition-all group shadow-sm hover:shadow-md"
             >
-              <PlusSquare className="w-8 h-8 text-purple-400 mb-2 group-hover:scale-110 transition-transform" />
-              <span className="font-semibold text-purple-100">Add Property</span>
+              <PlusSquare className="w-8 h-8 text-orange-600 mb-3 group-hover:scale-110 transition-transform" />
+              <span className="font-extrabold text-orange-900 tracking-tight">Add Property</span>
             </Link>
           </div>
         </div>

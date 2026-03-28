@@ -31,34 +31,30 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] px-4">
+    <div className="flex items-center justify-center min-h-[85vh] px-4 bg-gray-50/50">
       
-      {/* Background Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-600/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
-
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="glass-panel p-8 sm:p-10 rounded-3xl w-full max-w-md relative z-10 border border-white/10 shadow-2xl"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bento-card p-8 sm:p-12 w-full max-w-md shadow-xl"
       >
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-black text-white mb-2">Welcome Back</h2>
-          <p className="text-gray-400">Log in to manage your spaces</p>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-3 tracking-tight">Welcome Back</h2>
+          <p className="text-gray-500 font-medium">Log in to manage your spaces seamlessly.</p>
         </div>
 
         <button 
           onClick={handleGoogleAuth} 
-          className="w-full py-3 px-4 flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-900 font-bold rounded-xl transition-colors mb-6"
+          className="w-full py-4 px-4 flex items-center justify-center gap-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 font-bold tracking-wide rounded-2xl transition-all shadow-sm mb-6"
         >
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-5 h-5" />
           Continue with Google
         </button>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="h-px bg-white/10 flex-1" />
-          <span className="text-gray-500 text-sm">Or sign in with email</span>
-          <div className="h-px bg-white/10 flex-1" />
+          <div className="h-px bg-gray-200 flex-1" />
+          <span className="text-gray-400 font-medium text-sm tracking-wide uppercase">Or sign in with email</span>
+          <div className="h-px bg-gray-200 flex-1" />
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -70,7 +66,7 @@ function Login() {
               placeholder="Email Address" 
               required 
               onChange={handleChange} 
-              className="w-full pl-12 pr-4 py-3 bg-black/20 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none transition-all placeholder:text-gray-500"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
             />
           </div>
 
@@ -82,21 +78,21 @@ function Login() {
               placeholder="Password" 
               required 
               onChange={handleChange} 
-              className="w-full pl-12 pr-4 py-3 bg-black/20 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none transition-all placeholder:text-gray-500"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
             />
           </div>
 
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold rounded-xl flex justify-center items-center gap-2 transition-all shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] disabled:opacity-50"
+            className="w-full py-4 mt-8 bg-gray-900 hover:bg-black text-white font-extrabold tracking-wide rounded-2xl flex justify-center items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 disabled:opacity-50 text-lg"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><ArrowRight className="w-5 h-5" /> Sign In</>}
           </button>
         </form>
 
-        <p className="text-center mt-6 text-gray-400 text-sm">
-          Don't have an account? <Link to="/signup" className="text-purple-400 hover:text-purple-300 font-bold ml-1">Sign Up</Link>
+        <p className="text-center mt-8 text-gray-500 font-medium">
+          Don't have an account? <Link to="/signup" className="text-blue-600 hover:text-blue-700 font-bold ml-1 transition-colors">Sign Up</Link>
         </p>
       </motion.div>
     </div>

@@ -4,14 +4,17 @@ import RoomCard from "./RoomCard";
 import { CopyX } from "lucide-react";
 
 const SkeletonCard = () => (
-  <div className="glass-panel overflow-hidden h-full rounded-2xl animate-pulse">
-    <div className="h-48 sm:h-56 bg-white/5" />
-    <div className="p-5 flex flex-col gap-3">
-      <div className="h-6 w-3/4 bg-white/10 rounded-md" />
-      <div className="h-4 w-1/2 bg-white/5 rounded-md mt-2 mb-4" />
-      <div className="mt-auto pt-4 border-t border-white/10 flex justify-between">
-        <div className="h-8 w-1/3 bg-white/10 rounded-md" />
-        <div className="h-8 w-1/4 bg-white/5 rounded-md" />
+  <div className="bento-card overflow-hidden h-full flex flex-col justify-between animate-pulse">
+    <div className="h-48 sm:h-56 bg-gray-200" />
+    <div className="p-5 flex flex-col flex-grow bg-white">
+      <div className="h-6 w-3/4 bg-gray-200 rounded-md" />
+      <div className="h-4 w-1/2 bg-gray-100 rounded-md mt-4 mb-4" />
+      <div className="mt-auto flex justify-between items-end pt-4">
+        <div className="flex flex-col gap-2">
+           <div className="h-3 w-16 bg-gray-100 rounded-sm" />
+           <div className="h-8 w-24 bg-gray-200 rounded-md" />
+        </div>
+        <div className="h-10 w-24 bg-gray-100 rounded-lg" />
       </div>
     </div>
   </div>
@@ -45,11 +48,11 @@ const RoomList = () => {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center p-10 glass-panel max-w-xl mx-auto mt-10 rounded-2xl text-center">
+      <div className="flex flex-col items-center justify-center p-10 bento-card border border-red-100 bg-red-50 max-w-xl mx-auto mt-10 text-center">
         <CopyX className="w-16 h-16 text-red-400 mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">Network Error</h3>
-        <p className="text-gray-400">{error}</p>
-        <button onClick={() => window.location.reload()} className="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition border border-white/20">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">Network Error</h3>
+        <p className="text-gray-600 font-medium">{error}</p>
+        <button onClick={() => window.location.reload()} className="mt-6 px-6 py-2 bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-gray-50 rounded-xl transition font-semibold">
           Try Again
         </button>
       </div>
@@ -57,7 +60,11 @@ const RoomList = () => {
   }
 
   if (rooms.length === 0) {
-    return <div className="text-center text-gray-400 py-20">No properties available right now. Be the first to add one!</div>;
+    return (
+      <div className="text-center text-gray-500 py-24 font-medium bento-inner mt-8">
+         No properties available right now. Be the first to add one!
+      </div>
+    );
   }
 
   return (

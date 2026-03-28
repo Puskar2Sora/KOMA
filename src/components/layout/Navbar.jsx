@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/", icon: <Home className="w-4 h-4" /> },
-    { name: "Add Room", path: "/add-room", icon: <PlusSquare className="w-4 h-4" /> },
+    { name: "Post Room", path: "/add-room", icon: <PlusSquare className="w-4 h-4" /> },
   ];
 
   if (token) {
@@ -24,7 +24,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed w-full top-0 z-50 glass-panel border-b border-white/10">
+    <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -32,11 +32,11 @@ const Navbar = () => {
             <motion.div 
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold"
+              className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold tracking-tight shadow-md"
             >
               K
             </motion.div>
-            <span className="font-extrabold text-xl tracking-wider neon-text-primary">
+            <span className="font-extrabold text-xl tracking-wide text-gray-900">
               KOMA
             </span>
           </Link>
@@ -48,22 +48,24 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors"
+                  className="text-gray-600 hover:text-blue-600 flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-colors hover:bg-blue-50"
                 >
                   {link.icon}
                   {link.name}
                 </Link>
               ))}
               
+              <div className="w-px h-6 bg-gray-200 mx-2" />
+
               {!token ? (
-                <div className="flex gap-4 ml-4">
-                  <Link to="/login" className="text-gray-300 hover:text-white px-3 py-2">Login</Link>
-                  <Link to="/signup" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl transition-colors shadow-[0_0_15px_rgba(147,51,234,0.5)]">Sign Up</Link>
+                <div className="flex gap-4 items-center">
+                  <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 transition-colors">Login</Link>
+                  <Link to="/signup" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">Sign Up</Link>
                 </div>
               ) : (
                 <button 
                   onClick={handleLogout}
-                  className="text-red-400 hover:text-red-300 flex items-center gap-2 px-3 py-2 transition-colors ml-4"
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50 flex items-center gap-2 px-4 py-2 rounded-xl transition-colors font-medium"
                 >
                   <LogOut className="w-4 h-4" /> Logout
                 </button>
@@ -75,7 +77,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
+              className="text-gray-600 hover:text-gray-900 focus:outline-none p-2"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -90,31 +92,31 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-panel border-t border-white/10"
+            className="md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="px-4 pt-2 pb-6 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-300 hover:text-white flex items-center gap-3 px-3 py-3 rounded-md font-medium"
+                  className="text-gray-600 hover:bg-gray-50 flex items-center gap-3 px-4 py-3 rounded-xl font-medium"
                 >
                   {link.icon}
                   {link.name}
                 </Link>
               ))}
               {!token ? (
-                <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
-                  <Link to="/login" onClick={() => setIsOpen(false)} className="text-center text-gray-300 hover:text-white py-2">Login</Link>
-                  <Link to="/signup" onClick={() => setIsOpen(false)} className="text-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg">Sign Up</Link>
+                <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
+                  <Link to="/login" onClick={() => setIsOpen(false)} className="text-center text-gray-600 hover:bg-gray-50 py-3 rounded-xl font-medium">Login</Link>
+                  <Link to="/signup" onClick={() => setIsOpen(false)} className="text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-full shadow-md">Sign Up</Link>
                 </div>
               ) : (
                 <button 
                   onClick={() => { handleLogout(); setIsOpen(false); }}
-                  className="w-full text-left text-red-400 hover:text-red-300 flex items-center gap-3 px-3 py-3 font-medium border-t border-white/10 mt-2"
+                  className="w-full text-left text-red-600 hover:bg-red-50 flex items-center gap-3 px-4 py-3 rounded-xl font-medium border-t border-gray-100 mt-2"
                 >
-                  <LogOut className="w-4 h-4" /> Logout
+                  <LogOut className="w-4 h-4" /> Sign Out
                 </button>
               )}
             </div>

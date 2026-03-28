@@ -12,16 +12,15 @@ function LandingPage() {
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4 } }
+    hidden: { opacity: 0, y: 15 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0.3 } }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center pt-10 pb-24 overflow-hidden">
+    <div className="flex flex-col items-center justify-center pt-16 pb-24 overflow-hidden bg-gray-50/30">
       
-      {/* Background Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/2 h-[500px] bg-gradient-to-br from-blue-50 to-transparent rounded-bl-[100px] pointer-events-none" />
 
       {/* Hero Section */}
       <motion.header 
@@ -30,28 +29,28 @@ function LandingPage() {
         animate="show"
         className="text-center max-w-4xl relative z-10 px-4"
       >
-        <motion.div variants={item} className="inline-block mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md">
-          <span className="text-purple-300 font-semibold text-sm">✨ The New Standard of Living</span>
+        <motion.div variants={item} className="inline-block mb-8 px-5 py-2 rounded-full border border-blue-100 bg-blue-50/50 backdrop-blur-sm">
+          <span className="text-blue-700 font-bold text-sm tracking-wide uppercase">✨ The New Standard of Living</span>
         </motion.div>
         
-        <motion.h1 variants={item} className="text-5xl md:text-7xl font-black text-white tracking-tight leading-tight mb-8">
-          Find Your Perfect Stay with <span className="neon-text-primary">KOMA</span>
+        <motion.h1 variants={item} className="text-5xl md:text-7xl elegant-text-primary leading-[1.1] mb-8">
+          Find Your Perfect Stay with <span className="text-blue-600">KOMA.</span>
         </motion.h1>
         
-        <motion.p variants={item} className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-medium">
-          Discover affordable rooms, cozy apartments, and luxury stays customized to your lifestyle.
+        <motion.p variants={item} className="text-xl text-gray-500 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+          Discover affordable rooms, cozy apartments, and luxury stays curated specifically tailored for your lifestyle.
         </motion.p>
         
         <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link 
             to="/signup" 
-            className="w-full sm:w-auto px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-2xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:shadow-[0_0_30px_rgba(147,51,234,0.6)] hover:-translate-y-1"
+            className="w-full sm:w-auto px-8 py-4 bg-gray-900 hover:bg-black text-white rounded-full font-bold text-lg transition-all shadow-md hover:shadow-xl hover:-translate-y-1"
           >
             Get Started Now
           </Link>
           <Link 
             to="/rooms" 
-            className="w-full sm:w-auto px-8 py-4 glass-panel hover:bg-white/10 text-white rounded-2xl font-bold text-lg transition-all"
+            className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 rounded-full font-bold text-lg transition-all border border-gray-200 shadow-sm"
           >
             Explore Properties
           </Link>
@@ -67,33 +66,33 @@ function LandingPage() {
         className="mt-32 w-full max-w-6xl relative z-10 px-4"
       >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose <span className="neon-text-primary">KOMA?</span></h2>
-          <p className="text-gray-400">Everything you need, nothing you don't.</p>
+          <h2 className="text-3xl md:text-4xl elegant-text-primary mb-4">Why Choose <span className="text-blue-600">KOMA?</span></h2>
+          <p className="text-gray-500 font-medium text-lg">Everything you need, nothing you don't.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="glass-panel p-8 rounded-3xl hover:neon-border transition-all duration-300 group">
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <ShieldCheck className="w-7 h-7 text-blue-400" />
+          <div className="bento-card p-10 group">
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 border border-blue-100 group-hover:bg-blue-600 transition-colors duration-300">
+              <ShieldCheck className="w-7 h-7 text-blue-600 group-hover:text-white transition-colors" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">Verified Listings</h3>
-            <p className="text-gray-400 leading-relaxed">Every property and owner uses secure verification protocols ensuring absolute safety.</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Verified Listings</h3>
+            <p className="text-gray-600 leading-relaxed font-medium">Every property and owner uses secure verification protocols ensuring absolute safety.</p>
           </div>
 
-          <div className="glass-panel p-8 rounded-3xl hover:neon-border transition-all duration-300 group">
-            <div className="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Home className="w-7 h-7 text-purple-400" />
+          <div className="bento-card p-10 group">
+            <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 border border-gray-100 group-hover:bg-gray-900 transition-colors duration-300">
+              <Home className="w-7 h-7 text-gray-700 group-hover:text-white transition-colors" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">Smart Curation</h3>
-            <p className="text-gray-400 leading-relaxed">No hidden fees, no messy lists. See only properties that match your specific lifestyle.</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Smart Curation</h3>
+            <p className="text-gray-600 leading-relaxed font-medium">No hidden fees, no messy lists. See only properties that match your specific lifestyle.</p>
           </div>
 
-          <div className="glass-panel p-8 rounded-3xl hover:neon-border transition-all duration-300 group">
-            <div className="w-14 h-14 rounded-2xl bg-pink-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Zap className="w-7 h-7 text-pink-400" />
+          <div className="bento-card p-10 group">
+            <div className="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center mb-6 border border-orange-100 group-hover:bg-orange-500 transition-colors duration-300">
+              <Zap className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">Instant Booking</h3>
-            <p className="text-gray-400 leading-relaxed">Connect directly with owners through our integrated messaging and secure properties in minutes.</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Instant Booking</h3>
+            <p className="text-gray-600 leading-relaxed font-medium">Connect directly with owners through our integrated messaging and secure properties in minutes.</p>
           </div>
         </div>
       </motion.section>

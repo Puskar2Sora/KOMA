@@ -65,21 +65,21 @@ function AddRoom() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="mb-6">
-          <CheckCircle2 className="w-24 h-24 text-green-400 mx-auto" />
+          <CheckCircle2 className="w-24 h-24 text-green-500 mx-auto" />
         </motion.div>
-        <h2 className="text-3xl font-black text-white mb-2">Property Listed!</h2>
-        <p className="text-gray-400">Taking you to your properties dashboard...</p>
+        <h2 className="text-3xl font-black text-gray-900 mb-2">Property Listed!</h2>
+        <p className="text-gray-500 font-medium tracking-wide">Taking you to your property dashboard...</p>
       </div>
     );
   }
 
   const InputField = ({ label, icon, ...props }) => (
-    <div className="space-y-1 w-full">
-      <label className="block text-sm font-medium text-gray-400">{label}</label>
+    <div className="space-y-1.5 w-full">
+      <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">{label}</label>
       <div className="relative">
-        {icon && <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">{icon}</div>}
+        {icon && <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{icon}</div>}
         <input 
-          className={`w-full bg-white/5 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all ${icon ? "pl-10 pr-4 py-3" : "px-4 py-3"}`}
+          className={`w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 ${icon ? "pl-10 pr-4 py-3" : "px-4 py-3"}`}
           {...props}
         />
       </div>
@@ -88,42 +88,42 @@ function AddRoom() {
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       className="max-w-4xl mx-auto space-y-8"
     >
       <div className="flex items-center gap-4">
-        <Link to="/profile" className="p-2 glass-panel hover:bg-white/10 rounded-full transition-colors text-white">
+        <Link to="/profile" className="p-2.5 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 rounded-full transition-colors text-gray-700">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-3xl font-black text-white tracking-tight">Post Your Property</h1>
-          <p className="text-gray-400 font-medium">Create a beautiful listing in minutes.</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Post Your Property</h1>
+          <p className="text-gray-500 font-medium">Create a beautiful listing in minutes.</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         
         {/* Basic Info */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
-          <h3 className="text-xl font-bold flex items-center gap-2 text-white border-b border-white/10 pb-4">
-            <FileText className="w-5 h-5 text-purple-400" /> Basic Details
+        <div className="bento-card p-6 sm:p-10 space-y-8">
+          <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
+            <FileText className="w-5 h-5 text-blue-600" /> Basic Details
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             <InputField label="Listing Title" name="title" placeholder="Luxury 2BHK in Salt Lake..." required onChange={handleChange} />
             <InputField label="Monthly Rent (₹)" name="rent" type="number" placeholder="15000" required onChange={handleChange} />
             
-            <div className="space-y-1 w-full">
-              <label className="block text-sm font-medium text-gray-400">Property Type</label>
-              <select name="roomType" required onChange={handleChange} className="w-full px-4 py-3 bg-[#1e1c26] border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none hover:bg-white/5 transition-all appearance-none cursor-pointer">
+            <div className="space-y-1.5 w-full">
+              <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Property Type</label>
+              <select name="roomType" required onChange={handleChange} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium appearance-none cursor-pointer">
                 {["1 RK", "1 BHK", "2 BHK", "3 BHK", "Full House"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
               </select>
             </div>
 
-            <div className="space-y-1 w-full">
-              <label className="block text-sm font-medium text-gray-400">Furnishing Style</label>
-              <select name="furnishing" required onChange={handleChange} className="w-full px-4 py-3 bg-[#1e1c26] border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none hover:bg-white/5 transition-all appearance-none cursor-pointer">
+            <div className="space-y-1.5 w-full">
+              <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Furnishing Style</label>
+              <select name="furnishing" required onChange={handleChange} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium appearance-none cursor-pointer">
                 {["Unfurnished", "Semi-furnished", "Fully-furnished"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
               </select>
             </div>
@@ -132,24 +132,24 @@ function AddRoom() {
             <InputField label="Amenities (comma separated)" name="amenities" placeholder="WiFi, AC, Free Parking" onChange={handleChange} />
           </div>
 
-          <div className="space-y-1 w-full">
-            <label className="block text-sm font-medium text-gray-400">Full Description</label>
+          <div className="space-y-1.5 w-full mt-8">
+            <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Full Description</label>
             <textarea 
               name="description" 
               placeholder="Describe what makes your property special..." 
               required 
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none min-h-[120px] transition-all resize-none"
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none min-h-[140px] transition-all shadow-inner font-medium placeholder:text-gray-400 resize-none"
             />
           </div>
         </div>
 
         {/* Location Section */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
-          <h3 className="text-xl font-bold flex items-center gap-2 text-white border-b border-white/10 pb-4">
-            <Home className="w-5 h-5 text-blue-400" /> Location
+        <div className="bento-card p-6 sm:p-10 space-y-6">
+          <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
+            <Home className="w-5 h-5 text-green-600" /> Location
           </h3>
-          <p className="text-sm text-gray-400">Click anywhere on the map to drop a pin on your property's exact location.</p>
+          <p className="text-sm text-gray-500 font-medium">Click anywhere on the map to drop a pin on your property's exact location.</p>
           
           <div className="w-full group">
             <MapView 
@@ -161,10 +161,10 @@ function AddRoom() {
         </div>
 
         {/* Image Upload */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
-          <h3 className="text-xl font-bold flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-white border-b border-white/10 pb-4">
+        <div className="bento-card p-6 sm:p-10 space-y-6">
+          <h3 className="text-xl font-bold flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
             <span className="flex items-center gap-2">📸 Stunning Photos</span>
-            <span className="text-xs font-normal text-gray-400 bg-white/5 px-3 py-1 rounded-full">Max 7 Images</span>
+            <span className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full uppercase tracking-widest">Max 7 Images</span>
           </h3>
           
           <UploadForm images={images} setImages={setImages} />
@@ -173,7 +173,7 @@ function AddRoom() {
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full py-5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black text-xl flex justify-center items-center gap-2 rounded-2xl transition-all shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 hover:-translate-y-1"
+          className="w-full py-5 bg-gray-900 hover:bg-black text-white font-extrabold tracking-wide text-xl flex justify-center items-center gap-3 rounded-2xl transition-all shadow-lg hover:shadow-xl disabled:opacity-50 hover:-translate-y-1"
         >
           {loading ? (
             <><Loader2 className="w-6 h-6 animate-spin" /> Publishing Securely...</>

@@ -35,7 +35,6 @@ function EditRoom() {
           address: r.address || "",
           amenities: r.amenities ? r.amenities.join(", ") : "",
         });
-        // We preload existing images into the state for preview purposes if needed
         if (r.images) setImages(r.images);
         setLoading(false);
       })
@@ -56,8 +55,6 @@ function EditRoom() {
     const data = new FormData();
     Object.keys(form).forEach(key => data.append(key, form[key]));
 
-    // Append new images. (Note: The backend must handle replacing logic properly!)
-    // If the images array here contains primitive URLs, we skip. We only append FILE objects.
     for (let i = 0; i < images.length; i++) {
         if(typeof images[i] !== "string" && !images[i].url) {
             data.append("images", images[i]);
@@ -84,25 +81,25 @@ function EditRoom() {
 
   if (loading) return (
     <div className="flex justify-center items-center h-[50vh]">
-      <Loader2 className="w-10 h-10 animate-spin text-purple-500" />
+      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
     </div>
   );
 
   if (success) return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
       <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="mb-6">
-        <CheckCircle2 className="w-24 h-24 text-green-400 mx-auto" />
+        <CheckCircle2 className="w-24 h-24 text-green-500 mx-auto" />
       </motion.div>
-      <h2 className="text-3xl font-black text-white mb-2">Changes Saved!</h2>
-      <p className="text-gray-400">Taking you back to your property...</p>
+      <h2 className="text-3xl font-black text-gray-900 mb-2">Changes Saved!</h2>
+      <p className="text-gray-500 font-medium">Taking you back to your property...</p>
     </div>
   );
 
   const InputField = ({ label, ...props }) => (
-    <div className="space-y-1 w-full">
-      <label className="block text-sm font-medium text-gray-400">{label}</label>
+    <div className="space-y-1.5 w-full">
+      <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">{label}</label>
       <input 
-        className="w-full bg-white/5 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all px-4 py-3"
+        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 px-4 py-3"
         {...props}
       />
     </div>
@@ -110,59 +107,61 @@ function EditRoom() {
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       className="max-w-4xl mx-auto space-y-8"
     >
       <div className="flex items-center gap-4">
-        <Link to={`/rooms/${id}`} className="p-2 glass-panel hover:bg-white/10 rounded-full transition-colors text-white">
+        <Link to={`/rooms/${id}`} className="p-2.5 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 rounded-full transition-colors text-gray-700">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-3xl font-black text-white tracking-tight">Edit Property Details</h1>
-          <p className="text-gray-400 font-medium">Update the information for your listing.</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Edit Property Details</h1>
+          <p className="text-gray-500 font-medium">Update the information for your listing.</p>
         </div>
       </div>
 
       <form onSubmit={submit} className="space-y-8">
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
-          <h3 className="text-xl font-bold flex items-center gap-2 text-white border-b border-white/10 pb-4">
-            <FileText className="w-5 h-5 text-purple-400" /> Basic Details
+        <div className="bento-card p-6 sm:p-10 space-y-8">
+          <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
+            <FileText className="w-5 h-5 text-blue-600" /> Basic Details
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             <InputField label="Listing Title" name="title" value={form.title} required onChange={handleChange} />
             <InputField label="Monthly Rent (₹)" name="rent" type="number" value={form.rent} required onChange={handleChange} />
             <InputField label="City" name="city" value={form.city} required onChange={handleChange} />
             <InputField label="Address" name="address" value={form.address} required onChange={handleChange} />
+            
             <div className="md:col-span-2">
               <InputField label="Amenities (comma separated)" name="amenities" value={form.amenities} onChange={handleChange} />
             </div>
-            <div className="md:col-span-2 space-y-1 w-full">
-              <label className="block text-sm font-medium text-gray-400">Description</label>
+            
+            <div className="md:col-span-2 space-y-1.5 w-full">
+              <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Description</label>
               <textarea 
                 name="description" 
                 value={form.description} 
                 required 
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-purple-500/50 outline-none min-h-[120px] transition-all resize-none"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none min-h-[140px] transition-all shadow-inner font-medium resize-none"
               />
             </div>
           </div>
         </div>
 
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-4 border border-white/10">
-          <h3 className="text-xl font-bold text-white border-b border-white/10 pb-4">
+        <div className="bento-card p-6 sm:p-10 space-y-6">
+          <h3 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
             📸 Update Photos (Optional)
           </h3>
-          <p className="text-sm text-gray-400 mb-4">Uploading new photos will completely replace your current gallery.</p>
+          <p className="text-sm text-gray-500 font-medium mb-4">Uploading new photos will completely replace your current gallery.</p>
           <UploadForm images={images} setImages={setImages} />
         </div>
 
         <button 
           type="submit" 
           disabled={updating}
-          className="w-full py-5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black text-xl flex justify-center items-center gap-2 rounded-2xl transition-all shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 hover:-translate-y-1"
+          className="w-full py-5 bg-gray-900 hover:bg-black text-white font-extrabold tracking-wide text-xl flex justify-center items-center gap-3 rounded-2xl transition-all shadow-lg hover:shadow-xl disabled:opacity-50 hover:-translate-y-1"
         >
           {updating ? (
             <><Loader2 className="w-6 h-6 animate-spin" /> Saving Changes...</>
