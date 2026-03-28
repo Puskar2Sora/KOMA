@@ -1,170 +1,48 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import "../styles/rooms.css";
-
-// Fix for default Leaflet marker icons not showing in React
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-
-let DefaultIcon = L.icon({
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-L.Marker.prototype.options.icon = DefaultIcon;
-
-function ChangeView({ center }) {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center, 13);
-  }, [center, map]);
-  return null;
-}
+import React from "react";
+import RoomList from "../components/rooms/RoomList";
+import MapView from "../components/map/MapView";
+import { Search, Map } from "lucide-react";
+import { motion } from "framer-motion";
 
 function Rooms() {
-  const [rooms, setRooms] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [mapCenter, setMapCenter] = useState([22.5726, 88.3639]); // Default: Kolkata
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchRooms();
-  }, []);
-
-  const fetchRooms = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get("https://koma-backend-801z.onrender.com/api/rooms");
-      setRooms(res.data);
-    } catch (err) {
-      console.error("Failed to fetch rooms:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const query = searchQuery.toLowerCase();
-    const filtered = rooms.filter(r => 
-      r.city.toLowerCase().includes(query) || 
-      r.address.toLowerCase().includes(query) ||
-      r.title.toLowerCase().includes(query)
-    );
-    setRooms(filtered);
-  };
-
-  const findNearby = () => {
-    if (!navigator.geolocation) return alert("Geolocation not supported by your browser");
-    
-    setLoading(true);
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-      const { latitude, longitude } = pos.coords;
-      setMapCenter([latitude, longitude]);
-      try {
-        const res = await axios.get(
-          `https://koma-backend-801z.onrender.com/api/rooms/nearby?lat=${latitude}&lng=${longitude}&distance=15`
-        );
-        setRooms(res.data);
-      } catch (err) {
-        console.error("Nearby search failed:", err);
-        alert("No rooms found near your location.");
-      } finally {
-        setLoading(false);
-      }
-    }, () => {
-      alert("Location access denied.");
-      setLoading(false);
-    });
-  };
-
   return (
-    <div className="rooms-page-container">
-      <div className="search-header-bar">
-        <div className="search-wrapper">
-          <form onSubmit={handleSearch} className="location-search-form">
+    <div className="space-y-8 animate-in fade-in duration-700">
+      {/* Search Header */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-panel p-6 sm:p-10 rounded-3xl flex flex-col xl:flex-row items-center justify-between gap-6"
+      >
+        <div className="flex-1 space-y-2 text-center xl:text-left">
+          <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            Find Your <span className="neon-text-primary">Next Stay</span>
+          </h1>
+          <p className="text-gray-400 font-medium">Discover premium properties that match your vibe.</p>
+        </div>
+        
+        <div className="w-full xl:w-auto flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-1 items-center glass-panel px-4 py-3 rounded-xl border border-white/10 hover:border-purple-500/50 transition-colors focus-within:border-purple-500/80">
+            <Search className="w-5 h-5 text-gray-400 mr-3 shrink-0" />
             <input 
               type="text" 
-              placeholder="Search by city, address, or title..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search city, address, zip..." 
+              className="bg-transparent border-none outline-none text-white placeholder:text-gray-500 w-full sm:w-64"
             />
-            <button type="submit" className="search-submit-btn">Search</button>
-          </form>
-          <button className="location-nearby-btn" onClick={findNearby}>
-              📍 Near Me
+          </div>
+          <button className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-all hover:neon-border">
+            <Map className="w-5 h-5" /> Quick Map
           </button>
-          <button className="reset-all-btn" onClick={fetchRooms}>Reset</button>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="content-layout">
-        <div className="rooms-list-panel">
-          {loading ? (
-            <div className="loader-box"><div className="spinner"></div></div>
-          ) : rooms.length > 0 ? (
-            rooms.map(room => (
-              <div key={room._id} className="horizontal-room-card">
-                <img 
-                  src={room.images?.[0] ? `https://koma-backend-801z.onrender.com${room.images[0]}` : "https://via.placeholder.com/150"} 
-                  alt={room.title} 
-                />
-                <div className="card-details">
-                  <div className="card-header-row">
-                    <h4>{room.title}</h4>
-                    <span className="room-type-tag">{room.roomType}</span>
-                  </div>
-                  
-                  <p className="card-location">📍 {room.city}</p>
-                  
-                  {/* 🔥 NEW: Quick Specs Section */}
-                  <div className="card-specs">
-                    <span>🏠 {room.furnishing}</span>
-                    {room.area && <span>📏 {room.area} sqft</span>}
-                  </div>
-
-                  <p className="card-price">₹{room.rent}<span>/month</span></p>
-                  <Link to={`/rooms/${room._id}`} className="details-link">View Details</Link>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="no-results-msg">No properties found in this area.</div>
-          )}
-        </div>
-
-        <div className="rooms-map-panel">
-          <MapContainer center={mapCenter} zoom={13} scrollWheelZoom={true} style={{ height: "100%", width: "100%" }}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <ChangeView center={mapCenter} />
-            
-            {rooms.map(room => (
-              room.location && room.location.coordinates && room.location.coordinates.length === 2 ? (
-                <Marker 
-                  key={room._id} 
-                  position={[room.location.coordinates[1], room.location.coordinates[0]]}
-                >
-                  <Popup>
-                    <div className="map-popup-content">
-                      <strong>{room.title}</strong><br/>
-                      <span className="popup-specs">{room.roomType} • {room.furnishing}</span><br/>
-                      <span style={{ color: '#7c3aed', fontWeight: 'bold' }}>₹{room.rent}/mo</span><br/>
-                      <Link to={`/rooms/${room._id}`}>View Details</Link>
-                    </div>
-                  </Popup>
-                </Marker>
-              ) : null
-            ))}
-          </MapContainer>
-        </div>
+      {/* Room Listing Area */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white px-2 flex items-center gap-2 mb-6">
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse border border-green-200" />
+          Available Properties
+        </h2>
+        
+        <RoomList />
       </div>
     </div>
   );

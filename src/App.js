@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RoomDetails from "./pages/RoomDetails";
 import EditRoom from "./pages/EditRoom";
 import MyRooms from "./pages/MyRooms";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer"; // [1] Imported the new Footer
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import PublicRoute from "./components/PublicRoute";
@@ -49,73 +49,76 @@ function App() {
     <BrowserRouter>
       <Navbar user={user} />
 
-      <Routes>
-        <Route 
-          path="/" 
-          element={user ? <Rooms /> : <LandingPage />} 
-        />
-        
-        <Route path="/rooms/:id" element={<RoomDetails />} />
+      <main className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <Routes>
+          <Route 
+            path="/" 
+            element={user ? <Rooms /> : <LandingPage />} 
+          />
+          
+          <Route path="/rooms/:id" element={<RoomDetails />} />
 
-        {/* 🔓 Public routes */}
-        <Route
-          path="/login"
-          element={
-            <PublicRoute user={user}>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <PublicRoute user={user}>
-              <Signup />
-            </PublicRoute>
-          }
-        />
+          {/* 🔓 Public routes */}
+          <Route
+            path="/login"
+            element={
+              <PublicRoute user={user}>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <PublicRoute user={user}>
+                <Signup />
+              </PublicRoute>
+            }
+          />
 
-        <Route path="/google-success" element={<GoogleSuccess />} />
+          <Route path="/google-success" element={<GoogleSuccess />} />
 
-        {/* 🔐 Protected routes */}
-        <Route
-          path="/add-room"
-          element={
-            <ProtectedRoute user={user}>
-              <AddRoom />
-            </ProtectedRoute>
-          }
-        />
+          {/* 🔐 Protected routes */}
+          <Route
+            path="/add-room"
+            element={
+              <ProtectedRoute user={user}>
+                <AddRoom />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute user={user}>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute user={user}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/my-rooms"
-          element={
-            <ProtectedRoute user={user}>
-              <MyRooms />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/my-rooms"
+            element={
+              <ProtectedRoute user={user}>
+                <MyRooms />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/rooms/:id/edit"
-          element={
-            <ProtectedRoute user={user}>
-              <EditRoom />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/rooms/:id/edit"
+            element={
+              <ProtectedRoute user={user}>
+                <EditRoom />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
 
-      <Footer /> {/* [2] Footer added here to show on all pages */}
+      <Footer />
+
     </BrowserRouter>
   );
 }
