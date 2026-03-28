@@ -68,7 +68,7 @@ function EditRoom() {
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "multipart/form-data",
+            // DO NOT explicitly set 'Content-Type': 'multipart/form-data'. Axios handles boundary parsing implicitly.
           },
         }
       );

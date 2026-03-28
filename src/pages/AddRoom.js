@@ -113,7 +113,7 @@ const handleSubmit = async (e) => {
 // ✅ Corrected URL
 await axios.post("https://koma-backend-801z.onrender.com/api/rooms", data, {
   headers: {
-    "Content-Type": "multipart/form-data",
+    // DO NOT set "Content-Type": "multipart/form-data" manually. Axios sets it automatically with the correct boundary!
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
