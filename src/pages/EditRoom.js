@@ -81,7 +81,7 @@ function EditRoom() {
 
   if (loading) return (
     <div className="flex justify-center items-center h-[50vh]">
-      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+      <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
     </div>
   );
 
@@ -99,7 +99,7 @@ function EditRoom() {
     <div className="space-y-1.5 w-full">
       <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">{label}</label>
       <input 
-        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 px-4 py-3"
+        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 px-4 py-3"
         {...props}
       />
     </div>
@@ -124,7 +124,7 @@ function EditRoom() {
       <form onSubmit={submit} className="space-y-8">
         <div className="bento-card p-6 sm:p-10 space-y-8">
           <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
-            <FileText className="w-5 h-5 text-blue-600" /> Basic Details
+            <FileText className="w-5 h-5 text-emerald-600" /> Basic Details
           </h3>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -144,7 +144,7 @@ function EditRoom() {
                 value={form.description} 
                 required 
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none min-h-[140px] transition-all shadow-inner font-medium resize-none"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none min-h-[140px] transition-all shadow-inner font-medium resize-none"
               />
             </div>
           </div>

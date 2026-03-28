@@ -32,7 +32,7 @@ const Navbar = () => {
             <motion.div 
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold tracking-tight shadow-md"
+              className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold tracking-tight shadow-md"
             >
               K
             </motion.div>
@@ -48,7 +48,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-gray-600 hover:text-blue-600 flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-colors hover:bg-blue-50"
+                  className="text-gray-600 hover:text-emerald-600 flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-colors hover:bg-emerald-50"
                 >
                   {link.icon}
                   {link.name}
@@ -60,7 +60,7 @@ const Navbar = () => {
               {!token ? (
                 <div className="flex gap-4 items-center">
                   <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 transition-colors">Login</Link>
-                  <Link to="/signup" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">Sign Up</Link>
+                  <Link to="/signup" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">Sign Up</Link>
                 </div>
               ) : (
                 <button 
@@ -109,7 +109,7 @@ const Navbar = () => {
               {!token ? (
                 <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
                   <Link to="/login" onClick={() => setIsOpen(false)} className="text-center text-gray-600 hover:bg-gray-50 py-3 rounded-xl font-medium">Login</Link>
-                  <Link to="/signup" onClick={() => setIsOpen(false)} className="text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-full shadow-md">Sign Up</Link>
+                  <Link to="/signup" onClick={() => setIsOpen(false)} className="text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-full shadow-md">Sign Up</Link>
                 </div>
               ) : (
                 <button 

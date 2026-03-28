@@ -66,7 +66,7 @@ function Login() {
               placeholder="Email Address" 
               required 
               onChange={handleChange} 
-              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
             />
           </div>
 
@@ -78,7 +78,7 @@ function Login() {
               placeholder="Password" 
               required 
               onChange={handleChange} 
-              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400"
             />
           </div>
 
@@ -92,7 +92,7 @@ function Login() {
         </form>
 
         <p className="text-center mt-8 text-gray-500 font-medium">
-          Don't have an account? <Link to="/signup" className="text-blue-600 hover:text-blue-700 font-bold ml-1 transition-colors">Sign Up</Link>
+          Don't have an account? <Link to="/signup" className="text-emerald-600 hover:text-emerald-700 font-bold ml-1 transition-colors">Sign Up</Link>
         </p>
       </motion.div>
     </div>

@@ -47,7 +47,7 @@ function Profile() {
 
   if (!user) return (
     <div className="flex justify-center items-center h-[50vh]">
-      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+      <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
     </div>
   );
 
@@ -82,8 +82,8 @@ function Profile() {
                 file:mr-4 file:py-3 file:px-5
                 file:rounded-xl file:border-0
                 file:text-sm file:font-bold file:tracking-wide
-                file:bg-blue-50 file:text-blue-700
-                hover:file:bg-blue-100 transition-colors cursor-pointer"
+                file:bg-emerald-50 file:text-emerald-700
+                hover:file:bg-emerald-100 transition-colors cursor-pointer"
             />
             <button 
               disabled={uploading || !file}
@@ -105,9 +105,9 @@ function Profile() {
           <div className="grid grid-cols-2 gap-4">
             <Link 
               to="/my-rooms"
-              className="flex flex-col items-center justify-center p-6 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 rounded-2xl transition-all group shadow-sm hover:shadow-md"
+              className="flex flex-col items-center justify-center p-6 bg-gray-50 hover:bg-emerald-50 border border-gray-200 hover:border-emerald-200 rounded-2xl transition-all group shadow-sm hover:shadow-md"
             >
-              <Home className="w-8 h-8 text-blue-600 mb-3 group-hover:scale-110 transition-transform" />
+              <Home className="w-8 h-8 text-emerald-600 mb-3 group-hover:scale-110 transition-transform" />
               <span className="font-extrabold text-gray-900 tracking-tight">My Listings</span>
             </Link>
             

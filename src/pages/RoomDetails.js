@@ -47,7 +47,7 @@ function RoomDetails() {
 
   if (loading) return (
     <div className="flex justify-center items-center min-h-[50vh]">
-      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+      <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
     </div>
   );
 
@@ -86,7 +86,7 @@ function RoomDetails() {
               </span>
               <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-[1.1] drop-shadow-md tracking-tight mb-3">{room.title}</h1>
               <p className="flex items-center gap-2 text-gray-200 font-semibold text-lg drop-shadow">
-                <MapPin className="w-5 h-5 text-blue-400 drop-shadow-sm" /> {room.address || room.city}
+                <MapPin className="w-5 h-5 text-emerald-400 drop-shadow-sm" /> {room.address || room.city}
               </p>
             </div>
             
@@ -112,7 +112,7 @@ function RoomDetails() {
           
           <section className="bento-card p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2 tracking-tight">
-              <Home className="w-6 h-6 text-blue-600" /> Property Overview
+              <Home className="w-6 h-6 text-emerald-600" /> Property Overview
             </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -157,7 +157,7 @@ function RoomDetails() {
           {room.location && room.location.coordinates && (
             <section className="bento-card p-6 sm:p-10">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2 tracking-tight">
-                <MapPin className="w-6 h-6 text-blue-500" /> Exact Location
+                <MapPin className="w-6 h-6 text-emerald-500" /> Exact Location
               </h2>
               <MapView location={{lat: room.location.coordinates[1], lng: room.location.coordinates[0]}} />
             </section>
@@ -176,7 +176,7 @@ function RoomDetails() {
               </div>
 
               <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 mb-8 relative overflow-hidden flex items-center gap-4">
-                <div className="absolute top-0 right-0 p-3"><ShieldCheck className="w-6 h-6 text-blue-500 opacity-10"/></div>
+                <div className="absolute top-0 right-0 p-3"><ShieldCheck className="w-6 h-6 text-emerald-500 opacity-10"/></div>
                 <img 
                   src={room.owner?.photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150"} 
                   alt="Owner"
@@ -184,7 +184,7 @@ function RoomDetails() {
                 />
                 <div>
                   <p className="font-extrabold text-gray-900 text-lg truncate flex items-center gap-1.5">{room.owner?.name}</p>
-                  <p className="text-sm text-blue-600 font-bold flex items-center gap-1 mt-0.5">
+                  <p className="text-sm text-emerald-600 font-bold flex items-center gap-1 mt-0.5">
                     <ShieldCheck className="w-3.5 h-3.5" /> Identity Verified
                   </p>
                 </div>

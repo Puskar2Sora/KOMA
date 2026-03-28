@@ -6,11 +6,9 @@
   :root {
     --bg-main: #FAFAFA;       /* Soft crisp white */
     --card: #FFFFFF;
-    --card-border: #E5E7EB;   /* Tailwind gray-200 */
-    
     /* Elegant Accents */
-    --accent-blue: #2563EB;   /* Corporate/Royal Blue */
-    --accent-sage: #6B7280;   /* Muted gray-green */
+    --accent-sage: #059669;   /* Tailwind emerald-600 */
+    --accent-navy: #1E3A8A;   /* Tailwind emerald-900 */
     
     --text-main: #111827;     /* Almost black */
     --text-muted: #6B7280;    /* Gray-500 */
@@ -45,7 +43,7 @@
 
   /* Soft, interactive border pulse instead of neon */
   .bento-border-hover {
-    @apply border border-transparent hover:border-blue-200 hover:shadow-[0_0_0_4px_rgba(37,99,235,0.05)] transition-all duration-300;
+    @apply border border-transparent hover:border-emerald-200 hover:shadow-[0_0_0_4px_rgba(37,99,235,0.05)] transition-all duration-300;
   }
 }
 

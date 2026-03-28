@@ -31,7 +31,7 @@ const RoomCard = ({ room, index }) => {
       </Link>
       
       <div className="p-5 flex flex-col flex-grow bg-white">
-        <h3 className="text-xl font-bold tracking-tight text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+        <h3 className="text-xl font-bold tracking-tight text-gray-900 truncate group-hover:text-emerald-600 transition-colors">
           {room.title}
         </h3>
         

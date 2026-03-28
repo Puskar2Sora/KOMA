@@ -15,13 +15,13 @@ function Rooms() {
       >
         <div className="flex-1 space-y-2 text-center xl:text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Find Your <span className="text-blue-600">Next Stay</span>
+            Find Your <span className="text-emerald-600">Next Stay</span>
           </h1>
           <p className="text-gray-500 font-medium">Discover premium properties that perfectly match your vibe.</p>
         </div>
         
         <div className="w-full xl:w-auto flex flex-col sm:flex-row gap-4">
-          <div className="flex flex-1 items-center bg-gray-50 px-4 py-3 rounded-2xl border border-gray-200 transition-colors focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100/50 shadow-inner">
+          <div className="flex flex-1 items-center bg-gray-50 px-4 py-3 rounded-2xl border border-gray-200 transition-colors focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100/50 shadow-inner">
             <Search className="w-5 h-5 text-gray-400 mr-3 shrink-0" />
             <input 
               type="text" 

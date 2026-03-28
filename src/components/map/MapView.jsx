@@ -83,7 +83,7 @@ const MapView = ({
                     className="w-full h-24 object-cover rounded-md mb-2 shadow-sm"
                   />
                   <h4 className="font-bold text-sm truncate">{room.title}</h4>
-                  <p className="text-blue-600 font-bold text-sm mt-1">₹{room.rent}/mo</p>
+                  <p className="text-emerald-600 font-bold text-sm mt-1">₹{room.rent}/mo</p>
                   <Link
                     to={`/rooms/${room._id}`}
                     className="mt-3 block w-full text-center bg-gray-50 text-gray-800 border border-gray-200 font-semibold text-xs py-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -99,7 +99,7 @@ const MapView = ({
 
       {pickerMode && (
         <div className="absolute top-4 right-4 z-[400] bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-sm border border-gray-200 flex items-center gap-2 pointer-events-none">
-          <MapPin className="text-blue-500 w-4 h-4 animate-bounce" />
+          <MapPin className="text-emerald-500 w-4 h-4 animate-bounce" />
           <span className="text-gray-700 text-xs font-bold tracking-wide">Click map to pin</span>
         </div>
       )}

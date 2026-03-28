@@ -40,7 +40,7 @@ function MyRooms() {
 
   if (loading) return (
     <div className="flex justify-center items-center min-h-[50vh]">
-      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+      <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
     </div>
   );
 
@@ -66,7 +66,7 @@ function MyRooms() {
       {rooms.length === 0 ? (
         <div className="bento-card p-12 text-center border-dashed border-2 border-gray-200">
           <p className="text-gray-500 font-bold text-lg mb-6">You haven't listed any properties yet.</p>
-          <Link to="/add-room" className="inline-block px-8 py-3 bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold rounded-xl transition-colors">Get Started</Link>
+          <Link to="/add-room" className="inline-block px-8 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold rounded-xl transition-colors">Get Started</Link>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -85,14 +85,14 @@ function MyRooms() {
                 </div>
                 
                 <div className="p-6 flex flex-col flex-1 bg-white">
-                  <h4 className="font-extrabold text-gray-900 text-xl truncate mb-1 tracking-tight group-hover:text-blue-600 transition-colors">{room.title}</h4>
+                  <h4 className="font-extrabold text-gray-900 text-xl truncate mb-1 tracking-tight group-hover:text-emerald-600 transition-colors">{room.title}</h4>
                   <p className="text-sm font-medium text-gray-500 mb-6 truncate">{room.address || room.city}</p>
                   
                   <div className="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-gray-100">
                     <Link to={`/rooms/${room._id}`} className="flex-1 flex justify-center p-2.5 text-gray-600 hover:text-gray-900 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors font-semibold shadow-sm border border-gray-200" title="View">
                       <ExternalLink className="w-5 h-5" />
                     </Link>
-                    <Link to={`/rooms/${room._id}/edit`} className="flex-1 flex justify-center p-2.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors font-semibold shadow-sm border border-blue-100" title="Edit">
+                    <Link to={`/rooms/${room._id}/edit`} className="flex-1 flex justify-center p-2.5 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors font-semibold shadow-sm border border-emerald-100" title="Edit">
                       <Edit className="w-5 h-5" />
                     </Link>
                     <button onClick={() => handleDelete(room._id)} className="flex-1 flex justify-center p-2.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-xl transition-colors shadow-sm border border-red-100" title="Delete">

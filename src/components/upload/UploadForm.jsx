@@ -42,7 +42,7 @@ const UploadForm = ({ images, setImages }) => {
       <div 
         className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-3xl transition-all duration-300 ${
           dragActive 
-            ? "border-blue-400 bg-blue-50/50 scale-[1.02]" 
+            ? "border-emerald-400 bg-emerald-50/50 scale-[1.02]" 
             : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400"
         }`}
         onDragEnter={handleDrag}
@@ -62,9 +62,9 @@ const UploadForm = ({ images, setImages }) => {
           htmlFor="file-upload" 
           className="flex flex-col items-center justify-center w-full h-full cursor-pointer p-6 text-center"
         >
-          <UploadCloud className={`w-12 h-12 mb-3 ${dragActive ? "text-blue-500" : "text-gray-400"}`} />
+          <UploadCloud className={`w-12 h-12 mb-3 ${dragActive ? "text-emerald-500" : "text-gray-400"}`} />
           <p className="mb-2 text-sm text-gray-700 font-medium tracking-wide">
-            <span className="font-bold text-blue-600">Click to browse</span> or drag & drop files
+            <span className="font-bold text-emerald-600">Click to browse</span> or drag & drop files
           </p>
           <p className="text-xs text-gray-500 font-medium">
             High-res JPG, PNG, WEBP (Max 7 files)
