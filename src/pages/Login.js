@@ -47,8 +47,11 @@ function Login() {
           onClick={handleGoogleAuth} 
           className="w-full py-4 px-4 flex items-center justify-center gap-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 font-bold tracking-wide rounded-2xl transition-all shadow-sm mb-6"
         >
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-5 h-5" />
-          Continue with Google
+        <img 
+  src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" 
+  alt="Google" 
+  style={{ width: '20px', height: '20px' }} 
+/>  Continue with Google
         </button>
 
         <div className="flex items-center gap-4 mb-6">
