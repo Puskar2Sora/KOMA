@@ -4,8 +4,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
+import { getCloudinaryAltText, getCloudinaryImageUrl } from "../../utils/cloudinary";
 
-// Fix generic Leaflet marker icon issue with Webpack/Vite
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -13,7 +13,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png")
 });
 
-// A custom neon pin icon
 const DefaultIcon = new L.Icon({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
@@ -78,8 +77,8 @@ const MapView = ({
               <Popup className="z-[9999] bg-white rounded-xl shadow-xl border-none">
                 <div className="p-1 w-48 text-gray-800">
                   <img
-                    src={room.images?.[0]?.url || "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600&auto=format"}
-                    alt="Room"
+                    src={getCloudinaryImageUrl(room.images?.[0], "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600&auto=format")}
+                    alt={getCloudinaryAltText(room.images?.[0], "Room")}
                     className="w-full h-24 object-cover rounded-md mb-2 shadow-sm"
                   />
                   <h4 className="font-bold text-sm truncate">{room.title}</h4>

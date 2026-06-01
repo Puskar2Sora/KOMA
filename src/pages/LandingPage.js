@@ -30,7 +30,7 @@ function LandingPage() {
         className="text-center max-w-4xl relative z-10 px-4"
       >
         <motion.div variants={item} className="inline-block mb-8 px-5 py-2 rounded-full border border-emerald-100 bg-emerald-50/50 backdrop-blur-sm">
-          <span className="text-emerald-700 font-bold text-sm tracking-wide uppercase">✨ The New Standard of Living</span>
+          <span className="text-emerald-700 font-bold text-sm tracking-wide uppercase">The New Standard of Living</span>
         </motion.div>
         
         <motion.h1 variants={item} className="text-5xl md:text-7xl elegant-text-primary leading-[1.1] mb-8">

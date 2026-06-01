@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import MapView from "../components/map/MapView";
 import UploadForm from "../components/upload/UploadForm";
@@ -22,8 +22,6 @@ function AddRoom() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -54,7 +52,9 @@ function AddRoom() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setSuccess(true);
-      setTimeout(() => navigate('/my-rooms'), 2000);
+        setTimeout(() => {
+          window.location.assign('/my-rooms');
+        }, 2000);
     } catch (err) {
       alert(`Error: ${err.response?.data?.message || "Failed to add property"}`); 
       setLoading(false);
@@ -163,7 +163,7 @@ function AddRoom() {
         {/* Image Upload */}
         <div className="bento-card p-6 sm:p-10 space-y-6">
           <h3 className="text-xl font-bold flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-gray-900 border-b border-gray-100 pb-4 tracking-tight">
-            <span className="flex items-center gap-2">📸 Stunning Photos</span>
+            <span className="flex items-center gap-2">Stunning Photos</span>
             <span className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full uppercase tracking-widest">Max 7 Images</span>
           </h3>
           
@@ -178,7 +178,7 @@ function AddRoom() {
           {loading ? (
             <><Loader2 className="w-6 h-6 animate-spin" /> Publishing Securely...</>
           ) : (
-            "🚀 Publish Property Now"
+            " Publish Property Now"
           )}
         </button>
 

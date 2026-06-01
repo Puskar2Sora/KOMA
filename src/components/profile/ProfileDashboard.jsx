@@ -1,7 +1,11 @@
-import { User, Mail, ShieldCheck, MapPin } from "lucide-react";
+import { Mail, ShieldCheck, MapPin } from "lucide-react";
+import { getCloudinaryAltText, getCloudinaryImageDetails, getCloudinaryImageUrl } from "../../utils/cloudinary";
 
 const ProfileDashboard = ({ user }) => {
   if (!user) return null;
+
+  const avatarUrl = getCloudinaryImageUrl(user.photo, "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300");
+  const avatarDetails = getCloudinaryImageDetails(user.photoDetails);
 
   return (
     <div className="bento-card p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start relative bg-white">
@@ -12,9 +16,10 @@ const ProfileDashboard = ({ user }) => {
       <div className="relative shrink-0 z-10 w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0 mt-8 md:mt-12">
         <div className="absolute inset-0 rounded-full border-4 border-white shadow-md p-1 bg-white">
           <img 
-            src={user.photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300"} 
-            alt="Profile Avatar"
+            src={avatarUrl} 
+            alt={getCloudinaryAltText(user.photo, "Profile Avatar")}
             className="w-full h-full rounded-full object-cover bg-gray-100"
+              title={avatarDetails?.originalFilename ? `${avatarDetails.originalFilename}${avatarDetails.width && avatarDetails.height ? ` - ${avatarDetails.width}x${avatarDetails.height}` : ""}` : undefined}
           />
         </div>
       </div>

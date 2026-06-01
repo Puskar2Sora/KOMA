@@ -38,6 +38,7 @@ function Profile() {
       setUser(prev => ({ ...prev, photo: res.data.photo }));
       setFile(null); // reset file input
       alert("Profile photo updated successfully!");
+      window.location.reload();
     } catch (err) {
       alert("Upload failed. Please check file size/format.");
     } finally {

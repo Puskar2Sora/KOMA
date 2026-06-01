@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "../styles/navbar.css";
+import { getCloudinaryAltText, getCloudinaryImageUrl } from "../utils/cloudinary";
 
 function Navbar({ user }) {
   const navigate = useNavigate();
@@ -40,9 +41,8 @@ function Navbar({ user }) {
               className={`profile-trigger ${open ? 'active' : ''}`}
             >
               <div className="avatar-circle">
-                {/* 🔥 Updated: Support Cloudinary URLs directly */}
                 {user.photo ? (
-                  <img src={user.photo} alt="user" />
+                  <img src={getCloudinaryImageUrl(user.photo, user.photo)} alt={getCloudinaryAltText(user.photo, "user")} />
                 ) : (
                   <span>{user.name?.charAt(0).toUpperCase()}</span>
                 )}

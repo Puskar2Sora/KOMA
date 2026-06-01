@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PlusSquare, Edit, Trash2, ExternalLink, Loader2 } from "lucide-react";
+import { getCloudinaryAltText, getCloudinaryImageUrl } from "../utils/cloudinary";
 
 function MyRooms() {
   const [rooms, setRooms] = useState([]);
@@ -32,7 +33,7 @@ function MyRooms() {
       await axios.delete(`${API_BASE}/api/rooms/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      setRooms(rooms.filter(room => room._id !== id));
+      window.location.reload();
     } catch (err) {
       alert("Failed to delete room.");
     }
@@ -71,11 +72,11 @@ function MyRooms() {
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {rooms.map(room => {
-            const imgUrl = room.images?.[0]?.url || room.images?.[0] || "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600&auto=format";
+            const imgUrl = getCloudinaryImageUrl(room.images?.[0], "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600&auto=format");
             return (
               <div key={room._id} className="bento-card flex flex-col group hover:-translate-y-1">
                 <div className="relative h-56 overflow-hidden">
-                  <img src={imgUrl} alt={room.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={imgUrl} alt={getCloudinaryAltText(room.images?.[0], room.title)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute top-3 left-3 flex gap-2">
                     <span className="px-3 py-1.5 text-xs font-black tracking-wide bg-white text-gray-900 rounded-full shadow-sm">

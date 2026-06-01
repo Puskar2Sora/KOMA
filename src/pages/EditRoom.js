@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import UploadForm from "../components/upload/UploadForm";
@@ -7,7 +7,6 @@ import { Loader2, ArrowLeft, FileText, CheckCircle2 } from "lucide-react";
 
 function EditRoom() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -72,7 +71,9 @@ function EditRoom() {
         }
       );
       setSuccess(true);
-      setTimeout(() => navigate(`/rooms/${id}`), 2000);
+      setTimeout(() => {
+        window.location.assign(`/rooms/${id}`);
+      }, 2000);
     } catch (err) {
       alert("Failed to update listing. Ensure you are the owner.");
       setUpdating(false);

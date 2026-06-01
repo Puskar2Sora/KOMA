@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, IndianRupee } from "lucide-react";
+import { getCloudinaryAltText, getCloudinaryImageUrl } from "../../utils/cloudinary";
 
 const RoomCard = ({ room, index }) => {
   const fallbackImage = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600&auto=format&fit=crop";
-  const mainImage = room.images?.[0]?.url || room.images?.[0] || fallbackImage;
+  const mainImage = getCloudinaryImageUrl(room.images?.[0], fallbackImage);
 
   return (
     <motion.div
@@ -16,7 +17,7 @@ const RoomCard = ({ room, index }) => {
       <Link to={`/rooms/${room._id}`} className="block relative overflow-hidden h-48 sm:h-56">
         <img
           src={mainImage}
-          alt={room.title}
+          alt={getCloudinaryAltText(room.images?.[0], room.title)}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />

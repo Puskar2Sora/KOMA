@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UploadCloud, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getCloudinaryAltText, getCloudinaryImageUrl } from "../../utils/cloudinary";
 
 const UploadForm = ({ images, setImages }) => {
   const [dragActive, setDragActive] = useState(false);
@@ -76,7 +77,8 @@ const UploadForm = ({ images, setImages }) => {
         <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3">
           <AnimatePresence>
             {images.map((file, i) => {
-              const previewUrl = typeof file === "string" ? file : file.url ? file.url : URL.createObjectURL(file);
+              const cloudinaryUrl = getCloudinaryImageUrl(file);
+              const previewUrl = cloudinaryUrl || URL.createObjectURL(file);
               return (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -87,7 +89,7 @@ const UploadForm = ({ images, setImages }) => {
                 >
                   <img 
                     src={previewUrl} 
-                    alt="Preview" 
+                    alt={getCloudinaryAltText(file, "Preview")}
                     className="w-full h-full object-cover" 
                   />
                   <button

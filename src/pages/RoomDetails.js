@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import MapView from "../components/map/MapView";
+import { getCloudinaryAltText, getCloudinaryImageDetails, getCloudinaryImageUrl } from "../utils/cloudinary";
 import { 
   MapPin, Loader2, IndianRupee, MessageSquare, 
   ShieldCheck, Home, Maximize, CheckCircle2 
@@ -60,8 +61,9 @@ function RoomDetails() {
   );
 
   const imagesList = room.images?.length > 0 
-    ? room.images.map(img => img.url || img) 
+    ? room.images.map(img => getCloudinaryImageUrl(img)) 
     : ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format"];
+  const activeImageDetails = getCloudinaryImageDetails(room.images?.[activeImage]);
 
   return (
     <motion.div 
@@ -74,7 +76,7 @@ function RoomDetails() {
         <div className="relative w-full h-[300px] md:h-[500px] rounded-[1.75rem] overflow-hidden bg-gray-100 group">
           <img 
             src={imagesList[activeImage]} 
-            alt="Property View" 
+            alt={getCloudinaryAltText(room.images?.[activeImage], "Property View")} 
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -102,6 +104,12 @@ function RoomDetails() {
               ))}
             </div>
           </div>
+          {activeImageDetails && (
+            <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-md text-white text-xs font-semibold px-3 py-2 rounded-xl border border-white/20">
+                {activeImageDetails.width && activeImageDetails.height ? `${activeImageDetails.width}x${activeImageDetails.height}` : "Cloudinary image"}
+                {activeImageDetails.format ? ` - ${activeImageDetails.format.toUpperCase()}` : ""}
+            </div>
+          )}
         </div>
       </div>
 
@@ -178,8 +186,8 @@ function RoomDetails() {
               <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 mb-8 relative overflow-hidden flex items-center gap-4">
                 <div className="absolute top-0 right-0 p-3"><ShieldCheck className="w-6 h-6 text-emerald-500 opacity-10"/></div>
                 <img 
-                  src={room.owner?.photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150"} 
-                  alt="Owner"
+                  src={getCloudinaryImageUrl(room.owner?.photo, "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150")} 
+                  alt={getCloudinaryAltText(room.owner?.photo, "Owner")}
                   className="w-16 h-16 rounded-full object-cover border-[3px] border-white shadow-sm bg-gray-200"
                 />
                 <div>
