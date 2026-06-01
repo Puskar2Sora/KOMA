@@ -137,9 +137,6 @@ function Rooms() {
               className="bg-transparent border-none outline-none text-gray-900 placeholder:text-gray-400 font-medium w-full sm:w-64"
             />
           </div>
-          <button className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-bold transition-all shadow-sm hover:shadow-md">
-            <Map className="w-5 h-5 text-gray-500" /> Quick Map
-          </button>
         </div>
       </motion.div>
 
