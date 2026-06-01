@@ -176,13 +176,11 @@ function Rooms() {
         )}
       </section>
 
-      {/* Room Listing Area */}
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-gray-900 px-2 flex items-center gap-2 mb-6 tracking-tight">
           <span className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)] animate-pulse" />
           Available Properties
         </h2>
-        
         <RoomList />
       </div>
     </div>
