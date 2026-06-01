@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import MapView from "../components/map/MapView";
 import { getCloudinaryAltText, getCloudinaryImageDetails, getCloudinaryImageUrl } from "../utils/cloudinary";
 import { 
-  MapPin, Loader2, IndianRupee, MessageSquare, 
+  MapPin, Loader2, IndianRupee, MessageSquare, ChevronLeft, ChevronRight,
   ShieldCheck, Home, Maximize, CheckCircle2 
 } from "lucide-react";
 
@@ -15,6 +15,8 @@ function RoomDetails() {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     axios.get(`https://koma-backend-801z.onrender.com/api/rooms/${id}`)
@@ -65,6 +67,38 @@ function RoomDetails() {
     : ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format"];
   const activeImageDetails = getCloudinaryImageDetails(room.images?.[activeImage]);
 
+  const goPrev = () => {
+    setActiveImage((current) => (current - 1 + imagesList.length) % imagesList.length);
+  };
+
+  const goNext = () => {
+    setActiveImage((current) => (current + 1) % imagesList.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+    setTouchEnd(null);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart == null || touchEnd == null) return;
+
+    const distance = touchStart - touchEnd;
+    const swipeThreshold = 40;
+
+    if (distance > swipeThreshold) {
+      goNext();
+    }
+
+    if (distance < -swipeThreshold) {
+      goPrev();
+    }
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 15 }}
@@ -73,7 +107,12 @@ function RoomDetails() {
     >
       {/* Immersive Image Gallery Header */}
       <div className="bento-card p-2">
-        <div className="relative w-full h-[300px] md:h-[500px] rounded-[1.75rem] overflow-hidden bg-gray-100 group">
+        <div
+          className="relative w-full h-[300px] md:h-[500px] rounded-[1.75rem] overflow-hidden bg-gray-100 group"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <img 
             src={imagesList[activeImage]} 
             alt={getCloudinaryAltText(room.images?.[activeImage], "Property View")} 
@@ -104,6 +143,26 @@ function RoomDetails() {
               ))}
             </div>
           </div>
+          {imagesList.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={goPrev}
+                className="absolute left-5 top-1/2 -translate-y-1/2 bg-black/45 hover:bg-black/65 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-lg"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={goNext}
+                className="absolute right-5 top-1/2 -translate-y-1/2 bg-black/45 hover:bg-black/65 text-white p-3 rounded-full backdrop-blur-md transition-colors shadow-lg"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
           {activeImageDetails && (
             <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-md text-white text-xs font-semibold px-3 py-2 rounded-xl border border-white/20">
                 {activeImageDetails.width && activeImageDetails.height ? `${activeImageDetails.width}x${activeImageDetails.height}` : "Cloudinary image"}

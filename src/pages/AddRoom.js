@@ -6,6 +6,19 @@ import MapView from "../components/map/MapView";
 import UploadForm from "../components/upload/UploadForm";
 import { Loader2, ArrowLeft, Home, FileText, CheckCircle2 } from "lucide-react";
 
+const InputField = ({ label, icon, className = "", ...props }) => (
+  <div className="space-y-1.5 w-full">
+    <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">{label}</label>
+    <div className="relative">
+      {icon && <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">{icon}</div>}
+      <input
+        className={`w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 ${icon ? "pl-10 pr-4 py-3" : "px-4 py-3"} ${className}`}
+        {...props}
+      />
+    </div>
+  </div>
+);
+
 function AddRoom() {
   const [formData, setFormData] = useState({
     title: "",
@@ -72,19 +85,6 @@ function AddRoom() {
       </div>
     );
   }
-
-  const InputField = ({ label, icon, ...props }) => (
-    <div className="space-y-1.5 w-full">
-      <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">{label}</label>
-      <div className="relative">
-        {icon && <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{icon}</div>}
-        <input 
-          className={`w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl focus:ring-4 focus:ring-emerald-50 focus:border-emerald-400 outline-none transition-all shadow-inner font-medium placeholder:text-gray-400 ${icon ? "pl-10 pr-4 py-3" : "px-4 py-3"}`}
-          {...props}
-        />
-      </div>
-    </div>
-  );
 
   return (
     <motion.div 
@@ -169,7 +169,6 @@ function AddRoom() {
           
           <UploadForm images={images} setImages={setImages} />
         </div>
-
         <button 
           type="submit" 
           disabled={loading}
