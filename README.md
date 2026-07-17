@@ -3,6 +3,8 @@
   <h3>🏠 Key Optimized Managed Accommodation</h3>
   <p><i>"Transforming Urban Complexity into Managed Simplicity."</i></p>
 
+
+
   <p>
     <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge&logo=vercel" />
     <img src="https://img.shields.io/badge/Backend-Render-E33332?style=for-the-badge&logo=render" />
