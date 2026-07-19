@@ -161,7 +161,7 @@ function LandingPage() {
             animate={{ y: [0, -4, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            KOMA.
+            KOMA
           </motion.span>
         </motion.h1>
 
