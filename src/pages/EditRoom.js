@@ -59,7 +59,6 @@ function EditRoom() {
             data.append("images", images[i]);
         }
     }
-
     try {
       await axios.put(
         `https://koma-backend-801z.onrender.com/api/rooms/${id}`,
@@ -79,7 +78,6 @@ function EditRoom() {
       setUpdating(false);
     }
   };
-
   if (loading) return (
     <div className="flex justify-center items-center h-[50vh]">
       <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
