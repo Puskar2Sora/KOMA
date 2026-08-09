@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home, Search, PlusCircle, Heart, User } from "lucide-react";
-import "../styles/bottomNav.css";
+import "../styles/navbar.css";
 
 const springTransition = { type: "spring", stiffness: 400, damping: 28 };
 
@@ -57,4 +57,4 @@ function BottomNav({ user }) {
   );
 }
 
-export default BottomNav;
+export default Navbar;
