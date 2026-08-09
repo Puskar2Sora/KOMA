@@ -1,7 +1,7 @@
-/* Base floating container */
+/* Base floating pill bar */
 .bottom-nav {
   position: fixed;
-  bottom: 24px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -10,29 +10,29 @@
   align-items: center;
   justify-content: space-around;
 
-  width: min(94vw, 680px);
+  width: min(92vw, 480px);
   padding: 8px 16px;
 
   background-color: #ffffff;
   border: 3px solid #000000;
-  border-radius: 28px;
-  box-shadow: 4px 6px 0px #000000;
+  border-radius: 999px;
+  box-shadow: 4px 5px 0px #000000;
 }
 
-/* Individual navigation link items */
+/* Individual nav items */
 .bottom-nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  
+  gap: 2px;
+
+  padding: 6px 12px;
+  border-radius: 12px;
+
   color: #000000;
   text-decoration: none;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 12px;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .bottom-nav-item .nav-icon {
@@ -55,14 +55,16 @@
   background-color: #e5e7eb;
 }
 
-/* Center Floating Action Button (Offer) */
+/* Center Floating Yellow Button */
 .bottom-nav-fab {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #000000;
-  margin-top: -28px; /* Raises button out of the bar */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-top: -26px; /* Raises circle above the bar */
+  padding: 0;
 }
 
 .fab-circle {
@@ -70,33 +72,42 @@
   align-items: center;
   justify-content: center;
 
-  width: 54px;
-  height: 54px;
-  background-color: #ffcc00; /* Vibrant Yellow */
+  width: 52px;
+  height: 52px;
+  background-color: #ffcc00; /* Yellow Accent */
   border: 3px solid #000000;
   border-radius: 50%;
   box-shadow: 2px 3px 0px #000000;
-  transition: transform 0.15s ease;
 }
 
 .fab-icon {
   width: 28px;
   height: 28px;
-  stroke-width: 3px;
   color: #000000;
+  stroke-width: 3px;
 }
 
 .bottom-nav-fab span {
   font-size: 11px;
   font-weight: 800;
+  color: #000000;
   margin-top: 2px;
 }
 
-.bottom-nav-fab:hover .fab-circle {
-  transform: scale(1.06);
+.bottom-nav-fab:focus-visible,
+.bottom-nav-item:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
 }
 
-/* Page padding offset so content isn't covered */
+/* Prevent content from hiding behind the navbar */
 body {
-  padding-bottom: 110px;
+  padding-bottom: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav-item,
+  .bottom-nav-fab {
+    transition: none;
+  }
 }
