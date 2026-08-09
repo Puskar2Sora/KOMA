@@ -5,7 +5,7 @@
   transform: translateX(-50%);
   z-index: 50;
 
-  display: none; /* shown only on small screens, see media query below */
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 6px;
@@ -74,16 +74,9 @@
   outline-offset: 2px;
 }
 
-/* Only show on mobile/tablet — desktop keeps the top navbar */
-@media (max-width: 768px) {
-  .bottom-nav {
-    display: flex;
-  }
-
-  /* prevent content from being hidden behind the floating bar */
-  body {
-    padding-bottom: 84px;
-  }
+/* prevent content from being hidden behind the floating bar, on all screen sizes */
+body {
+  padding-bottom: 84px;
 }
 
 @media (prefers-reduced-motion: reduce) {
