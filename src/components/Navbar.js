@@ -5,7 +5,7 @@ import "../styles/navbar.css";
 
 const springTransition = { type: "spring", stiffness: 400, damping: 28 };
 
-function BottomNav({ user }) {
+function Navbar({ user }) {
   const navigate = useNavigate();
 
   return (
