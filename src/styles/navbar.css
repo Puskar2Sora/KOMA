@@ -1,87 +1,102 @@
+/* Base floating container */
 .bottom-nav {
   position: fixed;
-  bottom: 16px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 50;
+  z-index: 100;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 6px;
+  justify-content: space-around;
 
-  width: min(92vw, 380px);
-  padding: 10px 14px;
+  width: min(94vw, 680px);
+  padding: 8px 16px;
 
-  background: #10231c;
-  border-radius: 999px;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.25),
-    0 2px 6px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 28px;
+  box-shadow: 4px 6px 0px #000000;
 }
 
+/* Individual navigation link items */
 .bottom-nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-
-  padding: 6px 10px;
-  border-radius: 999px;
-
-  color: rgba(255, 255, 255, 0.55);
+  justify-content: center;
+  gap: 4px;
+  
+  color: #000000;
   text-decoration: none;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.bottom-nav-item .nav-icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.2px;
 }
 
 .bottom-nav-item span {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .bottom-nav-item:hover {
-  color: rgba(255, 255, 255, 0.85);
+  background-color: #f3f4f6;
 }
 
 .bottom-nav-item.active {
-  color: #ffffff;
-  background: rgba(16, 185, 129, 0.18); /* emerald-500 @ 18% */
+  background-color: #e5e7eb;
 }
 
-/* Center floating action button (Post Room) */
+/* Center Floating Action Button (Offer) */
 .bottom-nav-fab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  margin-top: -28px; /* Raises button out of the bar */
+}
+
+.fab-circle {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 52px;
-  height: 52px;
-  margin-top: -26px; /* raises it above the pill */
-
-  background: #059669; /* emerald-600 */
-  color: #ffffff;
-  border: 4px solid #10231c;
-  border-radius: 999px;
-
-  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.45);
-  cursor: pointer;
+  width: 54px;
+  height: 54px;
+  background-color: #ffcc00; /* Vibrant Yellow */
+  border: 3px solid #000000;
+  border-radius: 50%;
+  box-shadow: 2px 3px 0px #000000;
+  transition: transform 0.15s ease;
 }
 
-.bottom-nav-fab:focus-visible,
-.bottom-nav-item:focus-visible {
-  outline: 2px solid #10b981;
-  outline-offset: 2px;
+.fab-icon {
+  width: 28px;
+  height: 28px;
+  stroke-width: 3px;
+  color: #000000;
 }
 
-/* prevent content from being hidden behind the floating bar, on all screen sizes */
+.bottom-nav-fab span {
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.bottom-nav-fab:hover .fab-circle {
+  transform: scale(1.06);
+}
+
+/* Page padding offset so content isn't covered */
 body {
-  padding-bottom: 84px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bottom-nav-item,
-  .bottom-nav-fab {
-    transition: none;
-  }
+  padding-bottom: 110px;
 }

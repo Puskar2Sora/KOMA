@@ -1,57 +1,54 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Home, Search, PlusCircle, Heart, User } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { 
+  Settings, 
+  Car, 
+  Wallet, 
+  Plus, 
+  History, 
+  Map, 
+  BarChart2 
+} from "lucide-react";
 import "../styles/navbar.css";
 
-const springTransition = { type: "spring", stiffness: 400, damping: 28 };
-
-function Navbar({ user }) {
-  const navigate = useNavigate();
-
+function Navbar() {
   return (
-    <nav className="bottom-nav" aria-label="Primary">
-      <NavLink
-        to="/"
-        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
-      >
-        <Home className="w-5 h-5" />
-        <span>Home</span>
+    <nav className="bottom-nav" aria-label="Primary Navigation">
+      <NavLink to="/settings" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <Settings className="nav-icon" />
+        <span>Settings</span>
       </NavLink>
 
-      <NavLink
-        to="/search"
-        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
-      >
-        <Search className="w-5 h-5" />
-        <span>Search</span>
+      <NavLink to="/vehicles" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <Car className="nav-icon" />
+        <span>Vehicles</span>
       </NavLink>
 
-      {/* Center raised action — always routes to Post Room */}
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.06 }}
-        transition={springTransition}
-        className="bottom-nav-fab"
-        onClick={() => navigate(user ? "/add-room" : "/login")}
-        aria-label="Post a room"
-      >
-        <PlusCircle className="w-6 h-6" />
-      </motion.button>
-
-      <NavLink
-        to="/saved"
-        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
-      >
-        <Heart className="w-5 h-5" />
-        <span>Saved</span>
+      <NavLink to="/wallet" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <Wallet className="nav-icon" />
+        <span>Wallet</span>
       </NavLink>
 
-      <NavLink
-        to={user ? "/profile" : "/login"}
-        className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}
-      >
-        <User className="w-5 h-5" />
-        <span>Profile</span>
+      {/* Center Floating Action Button */}
+      <NavLink to="/offer" className="bottom-nav-fab" aria-label="Offer Ride">
+        <div className="fab-circle">
+          <Plus className="fab-icon" />
+        </div>
+        <span>Offer</span>
+      </NavLink>
+
+      <NavLink to="/history" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <History className="nav-icon" />
+        <span>History</span>
+      </NavLink>
+
+      <NavLink to="/trips" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <Map className="nav-icon" />
+        <span>Trips</span>
+      </NavLink>
+
+      <NavLink to="/report" className={({ isActive }) => `bottom-nav-item ${isActive ? "active" : ""}`}>
+        <BarChart2 className="nav-icon" />
+        <span>Report</span>
       </NavLink>
     </nav>
   );
