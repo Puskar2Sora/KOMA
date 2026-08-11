@@ -15,7 +15,6 @@ import Rooms from "./pages/Rooms";
 import AddRoom from "./pages/AddRoom";
 import GoogleSuccess from "./pages/GoogleSuccess";
 import LandingPage from "./pages/LandingPage";
-
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
