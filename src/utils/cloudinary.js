@@ -1,7 +1,6 @@
 const toCacheBustedUrl = (url, version) => {
   if (!url) return "";
   if (!version) return url;
-
   const separator = url.includes("?") ? "&" : "?";
   return `${url}${separator}v=${version}`;
 };
