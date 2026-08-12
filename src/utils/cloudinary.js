@@ -5,7 +5,6 @@ const toCacheBustedUrl = (url, version) => {
   const separator = url.includes("?") ? "&" : "?";
   return `${url}${separator}v=${version}`;
 };
-
 export const getCloudinaryImageUrl = (asset, fallback = "") => {
   if (!asset) return fallback;
 
