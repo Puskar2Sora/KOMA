@@ -15,7 +15,6 @@ export const getCloudinaryImageUrl = (asset, fallback = "") => {
 };
 export const getCloudinaryImageDetails = (asset) => {
   if (!asset || typeof asset === "string") return null;
-
   return {
     publicId: asset.public_id || asset.publicId || "",
     originalFilename: asset.original_filename || asset.originalFilename || asset.filename || "",
