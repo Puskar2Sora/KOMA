@@ -24,6 +24,5 @@ export const getCloudinaryImageDetails = (asset) => {
 };
 export const getCloudinaryAltText = (asset, fallback = "Image") => {
   if (!asset || typeof asset === "string") return fallback;
-
   return asset.original_filename || asset.originalFilename || asset.filename || fallback;
 };
