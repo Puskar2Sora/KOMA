@@ -14,7 +14,6 @@ export const getCloudinaryImageUrl = (asset, fallback = "") => {
   const url = asset.secure_url || asset.secureUrl || asset.url || asset.path || asset.preview || fallback;
   return toCacheBustedUrl(url, asset.version);
 };
-
 export const getCloudinaryImageDetails = (asset) => {
   if (!asset || typeof asset === "string") return null;
 
