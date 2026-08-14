@@ -22,11 +22,9 @@
   }
 }
 @layer utilities {
-  /* Crisp white card with soft bento shadow */
   .bento-card {
     @apply bg-white border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04),0_10px_20px_-2px_rgba(0,0,0,0.02)] rounded-3xl overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300;
   }
-  
   .bento-inner {
     @apply bg-gray-50 border border-gray-100 shadow-inner rounded-2xl;
   }
