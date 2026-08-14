@@ -28,19 +28,13 @@
   .bento-inner {
     @apply bg-gray-50 border border-gray-100 shadow-inner rounded-2xl;
   }
-
-  /* Deep crisp elegant text */
   .elegant-text-primary {
     @apply text-gray-900 font-extrabold tracking-tight;
   }
-
-  /* Soft, interactive border pulse instead of neon */
   .bento-border-hover {
     @apply border border-transparent hover:border-emerald-200 hover:shadow-[0_0_0_4px_rgba(37,99,235,0.05)] transition-all duration-300;
   }
 }
-
-/* Custom Scrollbar for sleekness */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -48,7 +42,7 @@
   background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D1D5DB; /* gray-300 */
+  background: #D1D5DB;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
