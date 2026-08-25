@@ -4,12 +4,14 @@ const toCacheBustedUrl = (url, version) => {
   const separator = url.includes("?") ? "&" : "?";
   return `${url}${separator}v=${version}`;
 };
+
 export const getCloudinaryImageUrl = (asset, fallback = "") => {
   if (!asset) return fallback;
   if (typeof asset === "string") return asset;
   const url = asset.secure_url || asset.secureUrl || asset.url || asset.path || asset.preview || fallback;
   return toCacheBustedUrl(url, asset.version);
 };
+
 export const getCloudinaryImageDetails = (asset) => {
   if (!asset || typeof asset === "string") return null;
   return {
