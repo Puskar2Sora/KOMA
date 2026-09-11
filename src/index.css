@@ -1,19 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   :root {
     --bg-main: #FAFAFA;       /* Soft crisp white */
     --card: #FFFFFF;
-    /* Elegant Accents */
     --accent-sage: #059669;   /* Tailwind emerald-600 */
     --accent-navy: #1E3A8A;   /* Tailwind emerald-900 */
-    
     --text-main: #111827;     /* Almost black */
     --text-muted: #6B7280;    /* Gray-500 */
   }
-
   body {
     background-color: var(--bg-main);
     color: var(--text-main);
@@ -25,29 +21,20 @@
     background-attachment: fixed;
   }
 }
-
 @layer utilities {
-  /* Crisp white card with soft bento shadow */
   .bento-card {
     @apply bg-white border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04),0_10px_20px_-2px_rgba(0,0,0,0.02)] rounded-3xl overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300;
   }
-  
   .bento-inner {
     @apply bg-gray-50 border border-gray-100 shadow-inner rounded-2xl;
   }
-
-  /* Deep crisp elegant text */
   .elegant-text-primary {
     @apply text-gray-900 font-extrabold tracking-tight;
   }
-
-  /* Soft, interactive border pulse instead of neon */
   .bento-border-hover {
     @apply border border-transparent hover:border-emerald-200 hover:shadow-[0_0_0_4px_rgba(37,99,235,0.05)] transition-all duration-300;
   }
 }
-
-/* Custom Scrollbar for sleekness */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -55,7 +42,7 @@
   background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D1D5DB; /* gray-300 */
+  background: #D1D5DB;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {

@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=60&pause=500&color=785j8j5&center=true&vCenter=true&width=500&height=100&lines=KOMA;GPS-FIRST;PRECISION" alt="KOMA Header" />
-  <h3>🏠 Key Optimized Managed Accommodation</h3>
+  <h3> Key Optimized Managed Accommodation</h3>
   <p><i>"Transforming Urban Complexity into Managed Simplicity."</i></p>
 
 
@@ -23,7 +23,7 @@ The current rental market is a maze of vague descriptions and "hidden" locations
 <table width="100%">
   <tr>
     <td width="50%">
-      <h3>🚫 The Problem</h3>
+      <h3>The Problem</h3>
       <ul>
         <li>Vague "landmark-based" addresses</li>
         <li>High broker commissions/middlemen</li>
@@ -32,7 +32,7 @@ The current rental market is a maze of vague descriptions and "hidden" locations
       </ul>
     </td>
     <td width="50%">
-      <h3>✅ The KOMA Solution</h3>
+      <h3>The KOMA Solution</h3>
       <ul>
         <li><b>Leaflet.js</b> Precise GPS Pinning</li>
         <li>Direct Owner-to-Tenant bridge</li>
@@ -45,7 +45,7 @@ The current rental market is a maze of vague descriptions and "hidden" locations
 
 ---
 
-## 🛠️ Technical Architecture
+##  Technical Architecture
 KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptime and lightning-fast geospatial queries.
 
 <div align="center">
@@ -139,7 +139,7 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 
 ---
 
-## 🚀 Key Features & UI
+##  Key Features & UI
 
 <table width="100%">
   <tr>
@@ -162,7 +162,7 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 <div align="center">
   <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,vercel,git,js,html,css" />
 </div>
@@ -178,7 +178,7 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 
 ---
 
-## 🛤️ Roadmap
+##  Roadmap
 - [x] **Phase 1**: Core MERN setup & Map Integration
 - [x] **Phase 2**: Google OAuth & Cloud Deployment
 - [ ] **Phase 3**: Aadhaar-based User Verification
@@ -186,7 +186,7 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 
 ---
 
-## 👥 The Team
+##  The Team
 **Puskar Nath** – *Full-Stack Architect*
 **Arpan Sadhak** - *Frontend*
 - **Focus:** MERN stack, Cloud Deployment, & Auth Security.
@@ -201,9 +201,9 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 
 <table width="100%">
   <tr style="background-color: #f8f9fa;">
-    <th width="33%">🔐 Identity & Security</th>
-    <th width="33%">🛰️ Geospatial Engine</th>
-    <th width="33%">☁️ Cloud Infrastructure</th>
+    <th width="33%"> Identity & Security</th>
+    <th width="33%"> Geospatial Engine</th>
+    <th width="33%"> Cloud Infrastructure</th>
   </tr>
   
   <tr>
@@ -234,7 +234,7 @@ KOMA operates on a modern, decoupled 3-tier architecture to ensure maximum uptim
 <br />
 
 <div align="center">
-  <h3>🚀 Key Backend Endpoints</h3>
+  <h3>Key Backend Endpoints</h3>
   <table border="1" cellpadding="10" style="border-collapse: collapse; width: 80%; text-align: left;">
     <tr style="background-color: #000; color: #fff;">
       <th>Method</th>

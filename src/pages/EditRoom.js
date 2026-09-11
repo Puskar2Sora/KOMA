@@ -4,7 +4,6 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import UploadForm from "../components/upload/UploadForm";
 import { Loader2, ArrowLeft, FileText, CheckCircle2 } from "lucide-react";
-
 function EditRoom() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
