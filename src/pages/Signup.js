@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { User, Mail, Lock, Loader2, UserPlus } from "lucide-react";
 
 function Signup() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
   const handleGoogleAuth = () => {
     window.open("https://koma-backend-801z.onrender.com/api/auth/google", "_self");
   };
@@ -32,7 +30,6 @@ function Signup() {
 
   return (
     <div className="flex items-center justify-center min-h-[85vh] px-4 bg-gray-50/50">
-      
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}

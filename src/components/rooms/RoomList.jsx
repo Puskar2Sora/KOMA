@@ -20,7 +20,7 @@ const SkeletonCard = () => (
   </div>
 );
 
-const RoomList = () => {
+const RoomList = ({ searchTerm = "" }) => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -59,7 +59,15 @@ const RoomList = () => {
     );
   }
 
-  if (rooms.length === 0) {
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const visibleRooms = rooms.filter((room) => {
+    if (!normalizedSearch) return true;
+    return [room.title, room.city, room.address, room.area, room.description]
+      .filter(Boolean)
+      .some((value) => String(value).toLowerCase().includes(normalizedSearch));
+  });
+
+  if (visibleRooms.length === 0) {
     return (
       <div className="text-center text-gray-500 py-24 font-medium bento-inner mt-8">
          No properties available right now. Be the first to add one!
@@ -69,7 +77,7 @@ const RoomList = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4 max-w-7xl mx-auto">
-      {rooms.map((room, index) => (
+      {visibleRooms.map((room, index) => (
         <RoomCard key={room._id} room={room} index={index} />
       ))}
     </div>

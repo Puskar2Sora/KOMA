@@ -1,16 +1,15 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://koma-backend-801z.onrender.com/api"
+  baseURL: process.env.REACT_APP_API_URL || "https://koma-backend-801z.onrender.com/api",
 });
 
-// Attach token automatically
-API.interceptors.request.use((req) => {
+API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  return req;
+  return config;
 });
 
 export default API;

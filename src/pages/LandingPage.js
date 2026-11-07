@@ -66,21 +66,6 @@ const featureItem = {
   }
 };
 
-// Continuous text loop settings for the mobile marquee banner
-const marqueeVariants = {
-  animate: {
-    x: [0, -1000],
-    transition: {
-      x: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 22,
-        ease: "linear",
-      },
-    },
-  },
-};
-
 function LandingPage() {
   
   const handleCtaTap = () => {
